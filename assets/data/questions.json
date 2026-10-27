@@ -1,0 +1,233 @@
+[
+  {
+    "id": "bases-1",
+    "themeId": "bases",
+    "question": "[À VALIDER] Que se passe-t-il juste avant un don de sang ?",
+    "reponses": [
+      { "texte": "Un entretien confidentiel avec un professionnel de santé", "correcte": true },
+      { "texte": "Rien, on donne directement", "correcte": false },
+      { "texte": "Un examen écrit", "correcte": false }
+    ],
+    "explication": "Un petit entretien confidentiel permet de vérifier que le don se passe en toute sécurité, pour toi comme pour la personne qui recevra le sang.",
+    "aValider": true
+  },
+  {
+    "id": "bases-2",
+    "themeId": "bases",
+    "question": "[À VALIDER] Faut-il venir à jeun pour donner son sang ?",
+    "reponses": [
+      { "texte": "Non, il vaut mieux avoir mangé et bu", "correcte": true },
+      { "texte": "Oui, à jeun obligatoirement", "correcte": false }
+    ],
+    "explication": "On vient le ventre plein et bien hydraté : c'est la meilleure façon de se sentir en forme pendant et après le don.",
+    "aValider": true
+  },
+  {
+    "id": "bases-3",
+    "themeId": "bases",
+    "question": "[À VALIDER] Le matériel utilisé pour le prélèvement est…",
+    "reponses": [
+      { "texte": "Stérile et à usage unique", "correcte": true },
+      { "texte": "Nettoyé puis réutilisé", "correcte": false },
+      { "texte": "Apporté par le donneur", "correcte": false }
+    ],
+    "explication": "Tout le matériel est stérile et utilisé une seule fois : donner son sang ne présente aucun risque d'infection.",
+    "aValider": true
+  },
+  {
+    "id": "bases-4",
+    "themeId": "bases",
+    "question": "[À VALIDER] Que fait-on juste après son don ?",
+    "reponses": [
+      { "texte": "On se pose et on prend une collation", "correcte": true },
+      { "texte": "On file directement au sport", "correcte": false },
+      { "texte": "On repart sans s'arrêter", "correcte": false }
+    ],
+    "explication": "Un moment de repos avec une collation fait partie du don : l'équipe en profite pour vérifier que tout va bien.",
+    "aValider": true
+  },
+  {
+    "id": "groupes-1",
+    "themeId": "groupes",
+    "question": "[À VALIDER] Quels sont les groupes du système ABO ?",
+    "reponses": [
+      { "texte": "A, B, AB et O", "correcte": true },
+      { "texte": "A, B et C", "correcte": false },
+      { "texte": "1, 2, 3 et 4", "correcte": false }
+    ],
+    "explication": "Le système ABO classe le sang en quatre groupes : A, B, AB et O. Chacun a son rôle à jouer !",
+    "aValider": true
+  },
+  {
+    "id": "groupes-2",
+    "themeId": "groupes",
+    "question": "[À VALIDER] À quoi correspond le « Rhésus » positif ou négatif ?",
+    "reponses": [
+      { "texte": "À la présence ou non d'une protéine sur les globules rouges", "correcte": true },
+      { "texte": "Au niveau de forme du donneur", "correcte": false },
+      { "texte": "Au taux de sucre dans le sang", "correcte": false }
+    ],
+    "explication": "Le Rhésus indique si une protéine est présente ou non à la surface des globules rouges. Ce n'est pas un indicateur de santé.",
+    "aValider": true
+  },
+  {
+    "id": "groupes-3",
+    "themeId": "groupes",
+    "question": "[À VALIDER] Peut-on transfuser n'importe quel sang à n'importe qui ?",
+    "reponses": [
+      { "texte": "Non, il faut vérifier la compatibilité", "correcte": true },
+      { "texte": "Oui, tous les groupes sont compatibles", "correcte": false }
+    ],
+    "explication": "Les équipes vérifient toujours la compatibilité entre donneur et receveur : c'est pour ça que tous les groupes sont précieux.",
+    "aValider": true
+  },
+  {
+    "id": "groupes-4",
+    "themeId": "groupes",
+    "question": "[À VALIDER] Comment connaître son groupe sanguin ?",
+    "reponses": [
+      { "texte": "Grâce à une analyse de sang, par exemple lors d'un don", "correcte": true },
+      { "texte": "En regardant la couleur de ses yeux", "correcte": false },
+      { "texte": "Selon son signe astrologique", "correcte": false }
+    ],
+    "explication": "Seule une analyse de sang permet de le connaître. Bonne nouvelle : pas besoin de le savoir avant de venir donner.",
+    "aValider": true
+  },
+  {
+    "id": "association-1",
+    "themeId": "association",
+    "question": "[À VALIDER] Quel est le rôle d'une association de donneurs de sang ?",
+    "reponses": [
+      { "texte": "Informer, sensibiliser et accompagner les donneurs", "correcte": true },
+      { "texte": "Remplacer l'hôpital", "correcte": false },
+      { "texte": "Vendre des poches de sang", "correcte": false }
+    ],
+    "explication": "L'association fait connaître le don, répond aux questions et accompagne celles et ceux qui souhaitent se lancer.",
+    "aValider": true
+  },
+  {
+    "id": "association-2",
+    "themeId": "association",
+    "question": "[À VALIDER] Qui sont les membres de l'association ?",
+    "reponses": [
+      { "texte": "Des bénévoles qui donnent de leur temps", "correcte": true },
+      { "texte": "Des employés d'un laboratoire", "correcte": false },
+      { "texte": "Uniquement des médecins", "correcte": false }
+    ],
+    "explication": "Ce sont des bénévoles engagés, de tous horizons, qui partagent l'envie d'aider les autres.",
+    "aValider": true
+  },
+  {
+    "id": "association-3",
+    "themeId": "association",
+    "question": "[À VALIDER] Comment s'engager sans forcément donner son sang ?",
+    "reponses": [
+      { "texte": "En devenant bénévole ou en parlant du don autour de soi", "correcte": true },
+      { "texte": "Ce n'est pas possible", "correcte": false }
+    ],
+    "explication": "Tout le monde peut aider : en rejoignant les bénévoles, ou simplement en parlant du don à ses proches.",
+    "aValider": true
+  },
+  {
+    "id": "association-4",
+    "themeId": "association",
+    "question": "[À VALIDER] Où peut-on donner son sang en Nouvelle-Calédonie ?",
+    "reponses": [
+      { "texte": "Au centre de don ou lors de collectes organisées", "correcte": true },
+      { "texte": "En pharmacie", "correcte": false },
+      { "texte": "Chez soi, avec un kit", "correcte": false }
+    ],
+    "explication": "On peut donner au centre de don ou lors des collectes organisées un peu partout : l'association aide à les faire connaître.",
+    "aValider": true
+  },
+  {
+    "id": "vraiFaux-1",
+    "themeId": "vraiFaux",
+    "question": "[À VALIDER] Vrai ou faux : le don du sang est bénévole et anonyme.",
+    "reponses": [
+      { "texte": "Vrai", "correcte": true },
+      { "texte": "Faux", "correcte": false }
+    ],
+    "explication": "C'est vrai : on donne gratuitement, et le receveur ne connaît pas l'identité du donneur. Un vrai geste de solidarité.",
+    "aValider": true
+  },
+  {
+    "id": "vraiFaux-2",
+    "themeId": "vraiFaux",
+    "question": "[À VALIDER] Vrai ou faux : il faut connaître son groupe sanguin avant de venir donner.",
+    "reponses": [
+      { "texte": "Vrai", "correcte": false },
+      { "texte": "Faux", "correcte": true }
+    ],
+    "explication": "Pas besoin ! Le groupe sanguin est déterminé à partir du don lui-même.",
+    "aValider": true
+  },
+  {
+    "id": "vraiFaux-3",
+    "themeId": "vraiFaux",
+    "question": "[À VALIDER] Vrai ou faux : un seul don peut aider plusieurs patients.",
+    "reponses": [
+      { "texte": "Vrai", "correcte": true },
+      { "texte": "Faux", "correcte": false }
+    ],
+    "explication": "C'est vrai : le sang est séparé en plusieurs composants, et chacun peut aider une personne différente.",
+    "aValider": true
+  },
+  {
+    "id": "vraiFaux-4",
+    "themeId": "vraiFaux",
+    "question": "[À VALIDER] Vrai ou faux : après un don, on reste épuisé pendant des semaines.",
+    "reponses": [
+      { "texte": "Vrai", "correcte": false },
+      { "texte": "Faux", "correcte": true }
+    ],
+    "explication": "C'est une idée reçue : après un temps de repos et une collation, la plupart des donneurs reprennent leur journée normalement.",
+    "aValider": true
+  },
+  {
+    "id": "voyage-1",
+    "themeId": "voyage",
+    "question": "[À VALIDER] Juste après le prélèvement, où part la poche ?",
+    "reponses": [
+      { "texte": "Au laboratoire, pour être analysée et préparée", "correcte": true },
+      { "texte": "Directement chez un patient", "correcte": false },
+      { "texte": "Au congélateur, sans contrôle", "correcte": false }
+    ],
+    "explication": "Chaque poche est d'abord analysée et préparée au laboratoire : c'est la première étape de son voyage.",
+    "aValider": true
+  },
+  {
+    "id": "voyage-2",
+    "themeId": "voyage",
+    "question": "[À VALIDER] Pourquoi sépare-t-on le sang en plusieurs composants ?",
+    "reponses": [
+      { "texte": "Pour donner à chaque patient ce dont il a besoin", "correcte": true },
+      { "texte": "Pour qu'il prenne moins de place", "correcte": false },
+      { "texte": "Pour changer sa couleur", "correcte": false }
+    ],
+    "explication": "Globules rouges, plasma, plaquettes : chaque composant répond à des besoins différents, ce qui permet d'aider plus de monde.",
+    "aValider": true
+  },
+  {
+    "id": "voyage-3",
+    "themeId": "voyage",
+    "question": "[À VALIDER] Pourquoi chaque poche est-elle étiquetée et suivie ?",
+    "reponses": [
+      { "texte": "Pour la suivre en toute sécurité, du donneur au patient", "correcte": true },
+      { "texte": "Pour la décorer", "correcte": false }
+    ],
+    "explication": "La traçabilité garantit la sécurité à chaque étape du voyage, tout en préservant l'anonymat du donneur.",
+    "aValider": true
+  },
+  {
+    "id": "voyage-4",
+    "themeId": "voyage",
+    "question": "[À VALIDER] Le sang donné se conserve-t-il indéfiniment ?",
+    "reponses": [
+      { "texte": "Non, chaque composant se conserve un temps limité", "correcte": true },
+      { "texte": "Oui, pour toujours", "correcte": false }
+    ],
+    "explication": "Les composants ont une durée de conservation limitée : c'est pour ça que les dons réguliers sont si précieux.",
+    "aValider": true
+  }
+]
