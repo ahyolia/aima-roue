@@ -1,4 +1,4 @@
-﻿import {
+import {
   angleArret,
   centreSegment,
   distanceBordure,

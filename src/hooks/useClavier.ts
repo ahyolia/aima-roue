@@ -15,7 +15,9 @@ const SELECTEUR_INTERACTIF = 'button, [role="button"], a, input, textarea, selec
 /** Raccourcis animateur. Espace/Entrée sont laissés aux boutons quand l'un d'eux a le focus. */
 export function useClavier(raccourcis: Raccourcis): void {
   const ref = useRef(raccourcis);
-  ref.current = raccourcis;
+  useEffect(() => {
+    ref.current = raccourcis;
+  });
 
   useEffect(() => {
     if (Platform.OS !== 'web' || typeof window === 'undefined') return;

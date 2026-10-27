@@ -1,4 +1,4 @@
-﻿import { entierAleatoire, rngCrypto } from '../aleatoire';
+import { entierAleatoire, rngCrypto } from '../aleatoire';
 import { tirerSegment } from '../tirage';
 import { rngSequence } from '../../test-utils/fixtures';
 

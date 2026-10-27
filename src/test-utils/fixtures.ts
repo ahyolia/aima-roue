@@ -1,4 +1,4 @@
-﻿import type { Question, Rng, ThemeId } from '../domain/types';
+import type { Question, Rng, ThemeId } from '../domain/types';
 
 /** Rng déterministe qui renvoie les valeurs données en boucle. */
 export const rngSequence = (...valeurs: number[]): Rng => {

@@ -27,6 +27,28 @@ interface Props {
   rng?: Rng;
 }
 
+/** Message pour les lecteurs d'écran, dérivé de l'état : thème tiré puis verdict. */
+function messageAnnonce(etat: Etat): string {
+  switch (etat.phase) {
+    case 'rotation':
+      return textes.rotationEnCours;
+    case 'theme': {
+      const segment = SEGMENTS[etat.segmentIndex];
+      return segment.id === 'joker' ? textes.annonceJoker : textes.annonceTheme(segment.libelle);
+    }
+    case 'choixJoker':
+      return textes.annonceJoker;
+    case 'reponse': {
+      const bonne = etat.verdict === 'bonne';
+      const titre = bonne ? textes.verdictBonneTitre : textes.verdictPresqueTitre;
+      const message = bonne ? textes.verdictBonneMessage : textes.verdictPresqueMessage;
+      return `${titre} ${message} ${etat.question.explication}`;
+    }
+    default:
+      return '';
+  }
+}
+
 export function EcranRoue({ adapter, rng = rngCrypto }: Props) {
   const [etat, dispatch] = useReducer(reducteur, etatInitial);
   const { stats, maj } = useStats();
@@ -34,10 +56,9 @@ export function EcranRoue({ adapter, rng = rngCrypto }: Props) {
   const reduit = useMouvementReduit();
   const pret = stats !== null && questions !== null;
 
-  const rotation = useRef(new Animated.Value(0)).current;
+  const [rotation] = useState(() => new Animated.Value(0));
   const [panneau, setPanneau] = useState(false);
   const [son, setSon] = useState(true);
-  const [annonce, setAnnonce] = useState('');
 
   const refLance = useRef<ViewInstance>(null);
   const refCarteQuestion = useRef<ViewInstance>(null);
@@ -95,8 +116,6 @@ export function EcranRoue({ adapter, rng = rngCrypto }: Props) {
   /* ---------- Effets de transition (une seule fois par nouvel état) ---------- */
 
   const dernierEtat = useRef<Etat | null>(null);
-  const tirerQuestionRef = useRef(tirerQuestion);
-  tirerQuestionRef.current = tirerQuestion;
 
   useEffect(() => {
     if (dernierEtat.current === etat) return;
@@ -105,13 +124,11 @@ export function EcranRoue({ adapter, rng = rngCrypto }: Props) {
 
     switch (etat.phase) {
       case 'accueil':
-        setAnnonce('');
         if (precedent) refLance.current?.focus();
         return;
 
       case 'rotation': {
         maj(ajouterLancer);
-        setAnnonce(textes.rotationEnCours);
         Animated.timing(rotation, {
           toValue: etat.angle,
           duration: reduit ? durees.rotationReduite : durees.rotation,
@@ -124,16 +141,14 @@ export function EcranRoue({ adapter, rng = rngCrypto }: Props) {
       }
 
       case 'theme': {
-        const segment = SEGMENTS[etat.segmentIndex];
-        setAnnonce(segment.id === 'joker' ? textes.annonceJoker : textes.annonceTheme(segment.libelle));
-        const id = segment.id;
+        const id = SEGMENTS[etat.segmentIndex].id;
         // Pas d'annulation : aucune action ne peut quitter la phase « theme » avant ce minuteur.
         setTimeout(() => {
           if (!estThemeId(id)) {
             dispatch({ type: 'THEME_REVELE', joker: true });
             return;
           }
-          const tirage = tirerQuestionRef.current(id);
+          const tirage = tirerQuestion(id);
           // Thème sans question : on laisse choisir un autre thème plutôt que de bloquer.
           if (tirage) dispatch({ type: 'THEME_REVELE', joker: false, themeId: id, tirage });
           else dispatch({ type: 'THEME_REVELE', joker: true });
@@ -152,16 +167,13 @@ export function EcranRoue({ adapter, rng = rngCrypto }: Props) {
       case 'reponse': {
         const bonne = etat.verdict === 'bonne';
         maj((s) => ajouterReponse(s, etat.themeId, bonne));
-        setAnnonce(
-          `${bonne ? textes.verdictBonneTitre : textes.verdictPresqueTitre} ${
-            bonne ? textes.verdictBonneMessage : textes.verdictPresqueMessage
-          } ${etat.question.explication}`,
-        );
         refSuivant.current?.focus();
         return;
       }
     }
-  }, [etat, maj, reduit, rotation]);
+    // L'effet ne rejoue rien pour un même état (garde dernierEtat) : les autres dépendances
+    // servent seulement à disposer de leurs valeurs à jour.
+  }, [etat, maj, reduit, rotation, tirerQuestion]);
 
   useEffect(() => {
     if (panneau) refFermerPanneau.current?.focus();
@@ -256,7 +268,7 @@ export function EcranRoue({ adapter, rng = rngCrypto }: Props) {
         <Texte style={styles.texteBoutonPanneau}>H</Texte>
       </Bouton>
 
-      <Annonce message={annonce} />
+      <Annonce message={messageAnnonce(etat)} />
     </Scene>
   );
 }

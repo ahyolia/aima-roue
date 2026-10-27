@@ -1,4 +1,4 @@
-﻿import { choisirQuestion, estQuestionValide } from '../questions';
+import { choisirQuestion, estQuestionValide } from '../questions';
 import { fabriquerQuestion, rngSequence } from '../../test-utils/fixtures';
 
 const pool = ['q1', 'q2', 'q3', 'q4'].map((id) => fabriquerQuestion(id));
