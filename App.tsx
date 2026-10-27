@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { NunitoSans_400Regular } from '@expo-google-fonts/nunito-sans/400Regular';
+import { NunitoSans_700Bold } from '@expo-google-fonts/nunito-sans/700Bold';
+import { NunitoSans_800ExtraBold } from '@expo-google-fonts/nunito-sans/800ExtraBold';
+import { Pacifico_400Regular } from '@expo-google-fonts/pacifico/400Regular';
+import { useFonts } from 'expo-font';
+import { View } from 'react-native';
+import { couleurs } from './src/config/theme';
+import { MockQuestionsAdapter } from './src/data/MockQuestionsAdapter';
+import { EcranRoue } from './src/screens/EcranRoue';
+
+// Point unique de branchement des données : remplacer par un ApiQuestionsAdapter plus tard.
+const adapter = new MockQuestionsAdapter();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  // Polices embarquées dans le bundle : aucun appel réseau.
+  const [chargees, erreur] = useFonts({
+    NunitoSans_400Regular,
+    NunitoSans_700Bold,
+    NunitoSans_800ExtraBold,
+    Pacifico_400Regular,
+    ...Ionicons.font,
+  });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if (!chargees && !erreur) return <View style={{ flex: 1, backgroundColor: couleurs.creme }} />;
+  return <EcranRoue adapter={adapter} />;
+}
