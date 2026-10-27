@@ -8,9 +8,17 @@ export const couleurs = {
   orange: '#F0A03C',
   mousse: '#6E9B3E',
   corail: '#F07A5E',
+  /* Déclinaisons en aplat (reflets et ombres = formes plus claires ou plus foncées). */
+  roseClair: '#FCE3DB',
+  laitonClair: '#F8C978',
+  laitonFonce: '#C77A1F',
+  laitonOmbre: '#9A5A12',
+  ampouleEteinte: '#EBCB93',
+  corailClair: '#F6A38E',
+  limeClair: '#E2EC8F',
 } as const;
 
-/** Polices embarquées (chargées dans App.tsx). */
+/** Polices embarquées (chargées dans App.tsx). Pacifico : un seul grand titre. */
 export const polices = {
   texte: 'NunitoSans_400Regular',
   gras: 'NunitoSans_700Bold',
@@ -24,7 +32,7 @@ export const tailles = {
   texte: 28,
   question: 40,
   verdict: 64,
-  titre: 72,
+  titre: 88,
   cibleMin: 48,
 } as const;
 
@@ -52,12 +60,15 @@ export interface PaireContraste {
 /** Toutes les paires avant-plan / fond utilisées dans l'interface (testées). */
 export const pairesContraste: PaireContraste[] = [
   { avantPlan: couleurs.aubergine, fond: couleurs.creme, usage: 'texte courant, cartes, cartouches', type: 'texte' },
-  { avantPlan: couleurs.aubergine, fond: couleurs.rose, usage: 'texte sur formes roses', type: 'texte' },
-  { avantPlan: couleurs.creme, fond: couleurs.aubergine, usage: 'bouton Lance !, boutons principaux', type: 'texte' },
-  { avantPlan: couleurs.aubergine, fond: couleurs.lime, usage: 'bandeau 1 lancer offert', type: 'texte' },
+  { avantPlan: couleurs.aubergine, fond: couleurs.rose, usage: 'texte posé sur les formes roses', type: 'texte' },
+  { avantPlan: couleurs.aubergine, fond: couleurs.roseClair, usage: 'texte posé sur les rayons rose clair', type: 'texte' },
+  { avantPlan: couleurs.creme, fond: couleurs.aubergine, usage: 'bouton Lance !, plaque du socle, onglet animateur', type: 'texte' },
+  { avantPlan: couleurs.aubergine, fond: couleurs.lime, usage: 'pastilles et bandeaux lime', type: 'texte' },
+  { avantPlan: couleurs.aubergine, fond: couleurs.orange, usage: 'pilule orange', type: 'texte' },
   { avantPlan: couleurs.creme, fond: couleurs.petrole, usage: 'réponse correcte surlignée', type: 'texte' },
   { avantPlan: couleurs.aubergine, fond: couleurs.creme, usage: 'icônes de segment dans le cartouche', type: 'graphique' },
-  { avantPlan: couleurs.lime, fond: couleurs.aubergine, usage: 'goutte du Joker, anneau du bouton', type: 'graphique' },
+  { avantPlan: couleurs.aubergine, fond: couleurs.lime, usage: 'icônes des étapes sur pastille lime', type: 'graphique' },
+  { avantPlan: couleurs.lime, fond: couleurs.aubergine, usage: 'goutte du Joker, anneau du bouton, pointeur', type: 'graphique' },
   { avantPlan: couleurs.petrole, fond: couleurs.creme, usage: 'icône de bonne réponse', type: 'graphique' },
   { avantPlan: couleurs.aubergine, fond: couleurs.creme, usage: 'anneau de focus sur fond crème', type: 'graphique' },
   { avantPlan: couleurs.creme, fond: couleurs.aubergine, usage: 'liseré de focus sur bouton aubergine', type: 'graphique' },

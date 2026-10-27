@@ -16,15 +16,20 @@ export const libellesSegments: Record<SegmentId, { lignes: string[]; complet: st
 /** Textes d'interface. Aucun vocabulaire de jeu d'argent ici (vérifié par un test). */
 export const textes = {
   titre: 'La roue Aïma',
+  sousTitre: 'Fais tourner la roue, découvre ton thème et réponds à la question !',
   bandeauLancer: '1 lancer offert',
-  bandeauSousTitre: 'Merci pour ton questionnaire !',
+  merciQuestionnaire: 'Merci pour ton questionnaire !',
+  etapes: [
+    ['sync', 'Lance la roue'],
+    ['chatbubble-ellipses', 'Réponds à la question'],
+    ['gift', 'Repars avec un sticker, et un goodie bonus si tu trouves !'],
+  ] as const,
   boutonLancer: 'Lance !',
   boutonLancerAccessible: 'Lancer la roue',
   rotationEnCours: 'La roue tourne…',
-  themeTire: 'Thème :',
+  themeTire: 'Ton thème :',
   annonceTheme: (theme: string) => `Thème tiré : ${theme}.`,
-  jokerTitre: 'Joker de la goutte !',
-  jokerConsigne: 'Choisis ton thème',
+  jokerConsigne: 'Choisis ton thème (touches 1 à 5)',
   annonceJoker: 'Joker de la goutte : choisis ton thème.',
   consigneReponse: 'Choisis ta réponse (touches 1 à 4)',
   verdictBonneTitre: 'Bravo !',
@@ -35,6 +40,7 @@ export const textes = {
   etiquetteTaReponse: 'Ta réponse',
   boutonJoueurSuivant: 'Joueur suivant',
   chargement: 'Préparation de la roue…',
+  ongletAnimateur: 'Animateur · H',
   panneauTitre: 'Panneau animateur',
   panneauRaccourcis: 'Raccourcis',
   raccourcis: [
