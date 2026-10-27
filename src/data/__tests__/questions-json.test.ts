@@ -18,8 +18,8 @@ describe('assets/data/questions.json', () => {
     for (const q of donnees) expect(THEME_IDS).toContain(q.themeId);
   });
 
-  it('marque les questions à valider avec le préfixe', () => {
-    for (const q of donnees.filter((d) => d.aValider)) expect(q.question.startsWith('[À VALIDER]')).toBe(true);
+  it("n'affiche aucun préfixe technique dans le texte des questions", () => {
+    for (const q of donnees) expect(q.question).not.toMatch(/\[.*\]/);
   });
 
   it('a des explications courtes (1 à 2 phrases)', () => {

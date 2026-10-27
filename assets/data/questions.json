@@ -2,7 +2,7 @@
   {
     "id": "bases-1",
     "themeId": "bases",
-    "question": "[À VALIDER] Que se passe-t-il juste avant un don de sang ?",
+    "question": "Que se passe-t-il juste avant un don de sang ?",
     "reponses": [
       { "texte": "Un entretien confidentiel avec un professionnel de santé", "correcte": true },
       { "texte": "Rien, on donne directement", "correcte": false },
@@ -14,7 +14,7 @@
   {
     "id": "bases-2",
     "themeId": "bases",
-    "question": "[À VALIDER] Faut-il venir à jeun pour donner son sang ?",
+    "question": "Faut-il venir à jeun pour donner son sang ?",
     "reponses": [
       { "texte": "Non, il vaut mieux avoir mangé et bu", "correcte": true },
       { "texte": "Oui, à jeun obligatoirement", "correcte": false }
@@ -25,7 +25,7 @@
   {
     "id": "bases-3",
     "themeId": "bases",
-    "question": "[À VALIDER] Le matériel utilisé pour le prélèvement est…",
+    "question": "Le matériel utilisé pour le prélèvement est…",
     "reponses": [
       { "texte": "Stérile et à usage unique", "correcte": true },
       { "texte": "Nettoyé puis réutilisé", "correcte": false },
@@ -37,7 +37,7 @@
   {
     "id": "bases-4",
     "themeId": "bases",
-    "question": "[À VALIDER] Que fait-on juste après son don ?",
+    "question": "Que fait-on juste après son don ?",
     "reponses": [
       { "texte": "On se pose et on prend une collation", "correcte": true },
       { "texte": "On file directement au sport", "correcte": false },
@@ -49,7 +49,7 @@
   {
     "id": "groupes-1",
     "themeId": "groupes",
-    "question": "[À VALIDER] Quels sont les groupes du système ABO ?",
+    "question": "Quels sont les groupes du système ABO ?",
     "reponses": [
       { "texte": "A, B, AB et O", "correcte": true },
       { "texte": "A, B et C", "correcte": false },
@@ -61,7 +61,7 @@
   {
     "id": "groupes-2",
     "themeId": "groupes",
-    "question": "[À VALIDER] À quoi correspond le « Rhésus » positif ou négatif ?",
+    "question": "À quoi correspond le « Rhésus » positif ou négatif ?",
     "reponses": [
       { "texte": "À la présence ou non d'une protéine sur les globules rouges", "correcte": true },
       { "texte": "Au niveau de forme du donneur", "correcte": false },
@@ -73,7 +73,7 @@
   {
     "id": "groupes-3",
     "themeId": "groupes",
-    "question": "[À VALIDER] Peut-on transfuser n'importe quel sang à n'importe qui ?",
+    "question": "Peut-on transfuser n'importe quel sang à n'importe qui ?",
     "reponses": [
       { "texte": "Non, il faut vérifier la compatibilité", "correcte": true },
       { "texte": "Oui, tous les groupes sont compatibles", "correcte": false }
@@ -84,7 +84,7 @@
   {
     "id": "groupes-4",
     "themeId": "groupes",
-    "question": "[À VALIDER] Comment connaître son groupe sanguin ?",
+    "question": "Comment connaître son groupe sanguin ?",
     "reponses": [
       { "texte": "Grâce à une analyse de sang, par exemple lors d'un don", "correcte": true },
       { "texte": "En regardant la couleur de ses yeux", "correcte": false },
@@ -96,7 +96,7 @@
   {
     "id": "association-1",
     "themeId": "association",
-    "question": "[À VALIDER] Quel est le rôle d'une association de donneurs de sang ?",
+    "question": "Quel est le rôle d'une association de donneurs de sang ?",
     "reponses": [
       { "texte": "Informer, sensibiliser et accompagner les donneurs", "correcte": true },
       { "texte": "Remplacer l'hôpital", "correcte": false },
@@ -108,7 +108,7 @@
   {
     "id": "association-2",
     "themeId": "association",
-    "question": "[À VALIDER] Qui sont les membres de l'association ?",
+    "question": "Qui sont les membres de l'association ?",
     "reponses": [
       { "texte": "Des bénévoles qui donnent de leur temps", "correcte": true },
       { "texte": "Des employés d'un laboratoire", "correcte": false },
@@ -120,7 +120,7 @@
   {
     "id": "association-3",
     "themeId": "association",
-    "question": "[À VALIDER] Comment s'engager sans forcément donner son sang ?",
+    "question": "Comment s'engager sans forcément donner son sang ?",
     "reponses": [
       { "texte": "En devenant bénévole ou en parlant du don autour de soi", "correcte": true },
       { "texte": "Ce n'est pas possible", "correcte": false }
@@ -131,7 +131,7 @@
   {
     "id": "association-4",
     "themeId": "association",
-    "question": "[À VALIDER] Où peut-on donner son sang en Nouvelle-Calédonie ?",
+    "question": "Où peut-on donner son sang en Nouvelle-Calédonie ?",
     "reponses": [
       { "texte": "Au centre de don ou lors de collectes organisées", "correcte": true },
       { "texte": "En pharmacie", "correcte": false },
@@ -143,7 +143,7 @@
   {
     "id": "vraiFaux-1",
     "themeId": "vraiFaux",
-    "question": "[À VALIDER] Vrai ou faux : le don du sang est bénévole et anonyme.",
+    "question": "Vrai ou faux : le don du sang est bénévole et anonyme.",
     "reponses": [
       { "texte": "Vrai", "correcte": true },
       { "texte": "Faux", "correcte": false }
@@ -154,7 +154,7 @@
   {
     "id": "vraiFaux-2",
     "themeId": "vraiFaux",
-    "question": "[À VALIDER] Vrai ou faux : il faut connaître son groupe sanguin avant de venir donner.",
+    "question": "Vrai ou faux : il faut connaître son groupe sanguin avant de venir donner.",
     "reponses": [
       { "texte": "Vrai", "correcte": false },
       { "texte": "Faux", "correcte": true }
@@ -165,7 +165,7 @@
   {
     "id": "vraiFaux-3",
     "themeId": "vraiFaux",
-    "question": "[À VALIDER] Vrai ou faux : un seul don peut aider plusieurs patients.",
+    "question": "Vrai ou faux : un seul don peut aider plusieurs patients.",
     "reponses": [
       { "texte": "Vrai", "correcte": true },
       { "texte": "Faux", "correcte": false }
@@ -176,7 +176,7 @@
   {
     "id": "vraiFaux-4",
     "themeId": "vraiFaux",
-    "question": "[À VALIDER] Vrai ou faux : après un don, on reste épuisé pendant des semaines.",
+    "question": "Vrai ou faux : après un don, on reste épuisé pendant des semaines.",
     "reponses": [
       { "texte": "Vrai", "correcte": false },
       { "texte": "Faux", "correcte": true }
@@ -187,7 +187,7 @@
   {
     "id": "voyage-1",
     "themeId": "voyage",
-    "question": "[À VALIDER] Juste après le prélèvement, où part la poche ?",
+    "question": "Juste après le prélèvement, où part la poche ?",
     "reponses": [
       { "texte": "Au laboratoire, pour être analysée et préparée", "correcte": true },
       { "texte": "Directement chez un patient", "correcte": false },
@@ -199,7 +199,7 @@
   {
     "id": "voyage-2",
     "themeId": "voyage",
-    "question": "[À VALIDER] Pourquoi sépare-t-on le sang en plusieurs composants ?",
+    "question": "Pourquoi sépare-t-on le sang en plusieurs composants ?",
     "reponses": [
       { "texte": "Pour donner à chaque patient ce dont il a besoin", "correcte": true },
       { "texte": "Pour qu'il prenne moins de place", "correcte": false },
@@ -211,7 +211,7 @@
   {
     "id": "voyage-3",
     "themeId": "voyage",
-    "question": "[À VALIDER] Pourquoi chaque poche est-elle étiquetée et suivie ?",
+    "question": "Pourquoi chaque poche est-elle étiquetée et suivie ?",
     "reponses": [
       { "texte": "Pour la suivre en toute sécurité, du donneur au patient", "correcte": true },
       { "texte": "Pour la décorer", "correcte": false }
@@ -222,7 +222,7 @@
   {
     "id": "voyage-4",
     "themeId": "voyage",
-    "question": "[À VALIDER] Le sang donné se conserve-t-il indéfiniment ?",
+    "question": "Le sang donné se conserve-t-il indéfiniment ?",
     "reponses": [
       { "texte": "Non, chaque composant se conserve un temps limité", "correcte": true },
       { "texte": "Oui, pour toujours", "correcte": false }
