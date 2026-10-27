@@ -3,9 +3,6 @@ import type { SegmentId } from '../domain/types';
 /** Nom officiel de l'association : pas encore arbitré, à changer ici uniquement. */
 export const NOM_ASSOCIATION = "l'association des donneurs de sang";
 
-/** Objectif du compteur collectif du stand. */
-export const OBJECTIF_COMPTEUR = 100;
-
 /** Libellés des segments (lignes affichées sur la roue + libellé complet). */
 export const libellesSegments: Record<SegmentId, { lignes: string[]; complet: string }> = {
   bases: { lignes: ['Les bases', 'du don'], complet: 'Les bases du don' },
@@ -23,7 +20,6 @@ export const textes = {
   bandeauSousTitre: 'Merci pour ton questionnaire !',
   boutonLancer: 'Lance !',
   boutonLancerAccessible: 'Lancer la roue',
-  compteur: (x: number, objectif: number) => `Bonnes réponses du stand : ${x} / ${objectif}`,
   rotationEnCours: 'La roue tourne…',
   themeTire: 'Thème :',
   annonceTheme: (theme: string) => `Thème tiré : ${theme}.`,
@@ -50,10 +46,11 @@ export const textes = {
   ] as const,
   panneauStats: 'Statistiques du jour (anonymes)',
   statsLancers: (n: number) => `Lancers : ${n}`,
+  statsTotal: (bonnes: number, total: number) => `Bonnes réponses : ${bonnes} / ${total}`,
   statsTheme: (theme: string, bonnes: number, total: number) => `${theme} : ${bonnes} / ${total}`,
   son: (actif: boolean) => (actif ? 'Son : activé' : 'Son : coupé'),
-  razBouton: 'Remettre le compteur à zéro',
-  razQuestion: 'Remettre le compteur collectif à zéro ?',
+  razBouton: 'Remettre les statistiques à zéro',
+  razQuestion: 'Remettre les statistiques du jour à zéro ?',
   razConfirmer: 'Oui, remettre à zéro',
   razAnnuler: 'Annuler',
   fermerPanneau: 'Fermer le panneau',

@@ -4,7 +4,7 @@ import { textes } from '../config/content';
 import { libelleTheme } from '../config/segments';
 import { couleurs, polices } from '../config/theme';
 import { THEME_IDS } from '../domain/types';
-import type { Stats } from '../logic/stats';
+import { type Stats, totaux } from '../logic/stats';
 import { Bouton, Texte } from './base';
 
 interface Props {
@@ -38,9 +38,10 @@ export function PanneauAnimateur({ stats, son, onFermer, onRemiseAZero, refFerme
       <Texte style={styles.texte}>{textes.son(son)}</Texte>
 
       <Texte style={styles.section}>{textes.panneauStats}</Texte>
-      <Texte style={styles.texte}>{textes.statsLancers(stats.jour.lancers)}</Texte>
+      <Texte style={styles.texte}>{textes.statsLancers(stats.lancers)}</Texte>
+      <Texte style={styles.texte}>{textes.statsTotal(totaux(stats).bonnes, totaux(stats).total)}</Texte>
       {THEME_IDS.map((id) => {
-        const t = stats.jour.parTheme[id] ?? { bonnes: 0, total: 0 };
+        const t = stats.parTheme[id] ?? { bonnes: 0, total: 0 };
         return (
           <Texte key={id} style={styles.texte}>
             {textes.statsTheme(libelleTheme(id), t.bonnes, t.total)}

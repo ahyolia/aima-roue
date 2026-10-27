@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { lireStats, type Stats } from '../logic/stats';
 
-const CLE = 'aima-roue:stats:v1';
+const CLE = 'aima-roue:stats:v2';
 
 /** Stockage local (localStorage sur le web). Ne contient que des agrégats anonymes. */
 export async function chargerStats(): Promise<Stats | null> {

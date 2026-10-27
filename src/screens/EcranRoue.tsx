@@ -4,7 +4,7 @@ import { Annonce, Bouton, Scene, Texte } from '../components/base';
 import { CarteQuestion, CarteReponse, CarteTheme, ChoixJoker } from '../components/Cartes';
 import { PanneauAnimateur } from '../components/PanneauAnimateur';
 import { Pointeur, Roue } from '../components/Roue';
-import { OBJECTIF_COMPTEUR, textes } from '../config/content';
+import { textes } from '../config/content';
 import { estThemeId, SEGMENTS } from '../config/segments';
 import { couleurs, durees, polices, tailles } from '../config/theme';
 import type { QuestionsAdapter } from '../data/QuestionsAdapter';
@@ -17,7 +17,7 @@ import { rngCrypto } from '../logic/aleatoire';
 import { angleArret } from '../logic/angle';
 import { choisirQuestion } from '../logic/questions';
 import { type Etat, etatInitial, reducteur } from '../logic/reducteur';
-import { ajouterLancer, ajouterReponse, remettreCompteurAZero } from '../logic/stats';
+import { ajouterLancer, ajouterReponse, statsVides } from '../logic/stats';
 import { tirerSegment } from '../logic/tirage';
 
 const DIAMETRE_ROUE = 820;
@@ -181,7 +181,6 @@ export function EcranRoue({ adapter, rng = rngCrypto }: Props) {
 
   /* ---------- Rendu ---------- */
 
-  const compteur = stats?.compteurCollectif ?? 0;
   const enAccueil = etat.phase === 'accueil';
 
   return (
@@ -218,9 +217,6 @@ export function EcranRoue({ adapter, rng = rngCrypto }: Props) {
             <Texte style={styles.bandeauTitre}>{textes.bandeauLancer}</Texte>
             <Texte style={styles.bandeauSousTitre}>{textes.bandeauSousTitre}</Texte>
           </View>
-          <View style={styles.compteur}>
-            <Texte style={styles.texteCompteur}>{textes.compteur(compteur, OBJECTIF_COMPTEUR)}</Texte>
-          </View>
           {!pret && <Texte>{textes.chargement}</Texte>}
           {etat.phase === 'rotation' && <Texte style={styles.etat}>{textes.rotationEnCours}</Texte>}
         </View>
@@ -255,7 +251,7 @@ export function EcranRoue({ adapter, rng = rngCrypto }: Props) {
           stats={stats}
           son={son}
           onFermer={() => setPanneau(false)}
-          onRemiseAZero={() => maj(remettreCompteurAZero)}
+          onRemiseAZero={() => maj((s) => statsVides(s.date))}
           refFermer={refFermerPanneau}
         />
       )}
