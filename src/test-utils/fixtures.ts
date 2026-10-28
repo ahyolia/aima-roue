@@ -15,5 +15,4 @@ export const fabriquerQuestion = (id: string, themeId: ThemeId = 'bases'): Quest
     { texte: 'B', correcte: false },
   ],
   explication: 'Explication.',
-  aValider: true,
 });

@@ -37,10 +37,17 @@ export const tailles = {
 } as const;
 
 export const durees = {
-  rotation: 5200,
-  rotationReduite: 900,
-  tours: 6,
-  toursReduits: 1,
+  /** Prise d'élan : recul de 10° en 250 ms. */
+  elan: 250,
+  elanDegres: 10,
+  /** Tours puis décélération (ease-out quint) : ~5 s au total avec l'élan. */
+  rotation: 4750,
+  toursMin: 4,
+  toursMax: 6,
+  /** Mouvement réduit : 1 tour en 1 s, sans élan. */
+  rotationReduite: 1000,
+  /** Un tour complet au repos (accueil), très lent. */
+  tourRepos: 90000,
   revelationTheme: 1500,
 } as const;
 
@@ -59,17 +66,17 @@ export interface PaireContraste {
 
 /** Toutes les paires avant-plan / fond utilisées dans l'interface (testées). */
 export const pairesContraste: PaireContraste[] = [
-  { avantPlan: couleurs.aubergine, fond: couleurs.creme, usage: 'texte courant, cartes, cartouches', type: 'texte' },
-  { avantPlan: couleurs.aubergine, fond: couleurs.rose, usage: 'texte posé sur les formes roses', type: 'texte' },
-  { avantPlan: couleurs.aubergine, fond: couleurs.roseClair, usage: 'texte posé sur les rayons rose clair', type: 'texte' },
-  { avantPlan: couleurs.creme, fond: couleurs.aubergine, usage: 'bouton Lance !, plaque du socle, onglet animateur', type: 'texte' },
-  { avantPlan: couleurs.aubergine, fond: couleurs.lime, usage: 'pastilles et bandeaux lime', type: 'texte' },
-  { avantPlan: couleurs.aubergine, fond: couleurs.orange, usage: 'pilule orange', type: 'texte' },
-  { avantPlan: couleurs.creme, fond: couleurs.petrole, usage: 'réponse correcte surlignée', type: 'texte' },
-  { avantPlan: couleurs.aubergine, fond: couleurs.creme, usage: 'icônes de segment dans le cartouche', type: 'graphique' },
-  { avantPlan: couleurs.aubergine, fond: couleurs.lime, usage: 'icônes des étapes sur pastille lime', type: 'graphique' },
-  { avantPlan: couleurs.lime, fond: couleurs.aubergine, usage: 'goutte du Joker, anneau du bouton, pointeur', type: 'graphique' },
-  { avantPlan: couleurs.petrole, fond: couleurs.creme, usage: 'icône de bonne réponse', type: 'graphique' },
+  { avantPlan: couleurs.aubergine, fond: couleurs.creme, usage: 'texte courant, cartes, cartouches des segments', type: 'texte' },
+  { avantPlan: couleurs.aubergine, fond: couleurs.rose, usage: 'explication sur fond rose', type: 'texte' },
+  { avantPlan: couleurs.creme, fond: couleurs.aubergine, usage: 'boutons, bouton Lance !, plaque du socle, bouton son', type: 'texte' },
+  { avantPlan: couleurs.aubergine, fond: couleurs.lime, usage: 'numéros de réponse, palier atteint, goutte du lancer en cours', type: 'texte' },
+  { avantPlan: couleurs.creme, fond: couleurs.petrole, usage: 'bonne réponse surlignée', type: 'texte' },
+  { avantPlan: couleurs.aubergine, fond: couleurs.creme, usage: 'icônes de segment, gouttes à venir en pointillés', type: 'graphique' },
+  { avantPlan: couleurs.aubergine, fond: couleurs.rose, usage: 'ampoule de la goutte « presque »', type: 'graphique' },
+  { avantPlan: couleurs.aubergine, fond: couleurs.lime, usage: 'étoile du palier atteint, contour du pointeur', type: 'graphique' },
+  { avantPlan: couleurs.creme, fond: couleurs.petrole, usage: 'coche de la goutte « bonne réponse »', type: 'graphique' },
+  { avantPlan: couleurs.lime, fond: couleurs.aubergine, usage: 'gouttes du Joker, anneau du bouton central', type: 'graphique' },
+  { avantPlan: couleurs.creme, fond: couleurs.aubergine, usage: 'icône du bouton son, liseré de focus sur bouton aubergine', type: 'graphique' },
   { avantPlan: couleurs.aubergine, fond: couleurs.creme, usage: 'anneau de focus sur fond crème', type: 'graphique' },
-  { avantPlan: couleurs.creme, fond: couleurs.aubergine, usage: 'liseré de focus sur bouton aubergine', type: 'graphique' },
+  { avantPlan: couleurs.aubergine, fond: couleurs.lime, usage: 'anneau de focus sur palier lime', type: 'graphique' },
 ];

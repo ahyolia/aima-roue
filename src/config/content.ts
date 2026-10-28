@@ -1,63 +1,89 @@
-import type { SegmentId } from '../domain/types';
+import type { ObjetId, Palier } from '../domain/types';
 
-/** Nom officiel de l'association : pas encore arbitré, à changer ici uniquement. */
-export const NOM_ASSOCIATION = "l'association des donneurs de sang";
+/** Nombre de lancers par partie. */
+export const NB_LANCERS = 3;
 
-/** Libellés des segments (lignes affichées sur la roue + libellé complet). */
-export const libellesSegments: Record<SegmentId, { lignes: string[]; complet: string }> = {
-  bases: { lignes: ['Les bases', 'du don'], complet: 'Les bases du don' },
-  groupes: { lignes: ['Groupes', 'sanguins'], complet: 'Groupes sanguins' },
-  association: { lignes: ["L'association"], complet: "L'association" },
-  vraiFaux: { lignes: ['Vrai', 'ou faux ?'], complet: 'Vrai ou faux ?' },
-  voyage: { lignes: ['Le voyage', "d'une poche"], complet: "Le voyage d'une poche" },
-  joker: { lignes: ['Joker de', 'la goutte'], complet: 'Joker de la goutte' },
+/** Thème dont les réponses gardent l'ordre « Vrai » puis « Faux ». */
+export const THEME_VRAI_FAUX = 'vrai-faux';
+
+/** Segment Joker (ajouté aux 5 thèmes du fichier de questions). */
+export const segmentJoker = { libelle: 'Joker de la goutte', icone: 'sparkles' } as const;
+
+/** Noms des objets offerts, affichés sous leur illustration. */
+export const nomsObjets: Record<ObjetId, string> = {
+  sticker: 'Sticker',
+  stylo: 'Stylo',
+  tshirt: 'T-shirt',
 };
 
-/** Textes d'interface. Aucun vocabulaire de jeu d'argent ici (vérifié par un test). */
+/** Messages des paliers. Le message ne change pas si un objet est épuisé. */
+export const messagesPaliers: Record<Palier, string> = {
+  merci: "Merci d'avoir joué ! Et en bonus : 3 nouvelles infos sur le don.",
+  bravo: 'Bravo !',
+  sansFaute: 'Sans-faute !',
+};
+
+/** Libellés courts des paliers dans l'échelle des récompenses. */
+export const libellesPaliers: Record<Palier, string> = {
+  merci: '0 ou 1/3',
+  bravo: '2/3',
+  sansFaute: '3/3',
+};
+
+/** Libellés complets, lus par les lecteurs d'écran. */
+export const libellesPaliersAccessibles: Record<Palier, string> = {
+  merci: '0 ou 1 bonne réponse',
+  bravo: '2 bonnes réponses',
+  sansFaute: '3 bonnes réponses',
+};
+
+const pluriel = (n: number, mot: string) => `${n} ${mot}${n > 1 ? 's' : ''}`;
+
+/**
+ * Textes d'interface. Vocabulaire interdit (vérifié par un test) : chance, jackpot,
+ * perdu, raté, gagné, faux. On dit « Tu repars avec », jamais « tu as gagné ».
+ */
 export const textes = {
-  titre: 'La roue Aïma',
-  sousTitre: 'Fais tourner la roue, découvre ton thème et réponds à la question !',
-  bandeauLancer: '1 lancer offert',
-  merciQuestionnaire: 'Merci pour ton questionnaire !',
-  etapes: [
-    ['sync', 'Lance la roue'],
-    ['chatbubble-ellipses', 'Réponds à la question'],
-    ['gift', 'Repars avec un sticker, et un goodie bonus si tu trouves !'],
-  ] as const,
+  titre: 'La roue des questions',
+  sousTitre: '3 lancers, 3 questions',
+  boutonCommencer: 'Lance la roue !',
   boutonLancer: 'Lance !',
   boutonLancerAccessible: 'Lancer la roue',
+  chargement: 'Préparation de la roue…',
+  aideClavier: 'Espace ou Entrée pour lancer',
+
+  compteur: (lancer: number) => `Lancer ${lancer}/${NB_LANCERS}`,
+  annonceCompteur: (lancer: number, bonnes: number) =>
+    `Lancer ${lancer} sur ${NB_LANCERS}, ${pluriel(bonnes, 'bonne réponse')}.`,
+  goutteAVenir: (n: number) => `Lancer ${n} : à venir`,
+  goutteBonne: (n: number) => `Lancer ${n} : bonne réponse`,
+  gouttePresque: (n: number) => `Lancer ${n} : presque`,
+
   rotationEnCours: 'La roue tourne…',
   themeTire: 'Ton thème :',
   annonceTheme: (theme: string) => `Thème tiré : ${theme}.`,
   jokerConsigne: 'Choisis ton thème (touches 1 à 5)',
   annonceJoker: 'Joker de la goutte : choisis ton thème.',
   consigneReponse: 'Choisis ta réponse (touches 1 à 4)',
+
   verdictBonneTitre: 'Bravo !',
-  verdictBonneMessage: 'Bonne réponse ! Un goodie bonus t’attend.',
   verdictPresqueTitre: 'Presque !',
-  verdictPresqueMessage: 'Merci d’avoir joué ! Voici l’explication, et un sticker pour toi.',
+  verdictBonneMessage: 'Tu as trouvé la bonne réponse.',
+  verdictPresqueMessage: 'Voici la bonne réponse :',
   etiquetteBonneReponse: 'Bonne réponse',
-  etiquetteTaReponse: 'Ta réponse',
+  lancerSuivant: (prochain: number) => `Lancer suivant (${prochain}/${NB_LANCERS})`,
+  voirRecompenses: 'Voir mes récompenses',
+
+  echelleTitre: 'Tes récompenses',
+  palierAtteint: 'Atteint',
+  palierAccessible: (palier: string, objets: string, atteint: boolean) =>
+    `${palier} : ${objets}${atteint ? ', palier atteint' : ''}.`,
+  annonceRecompenses: (objets: string) => `Tu repars avec : ${objets}.`,
+  score: (bonnes: number) => `${bonnes}/${NB_LANCERS}`,
+  scoreAccessible: (bonnes: number) => `${pluriel(bonnes, 'bonne réponse')} sur ${NB_LANCERS}`,
+  tuReparsAvec: 'Tu repars avec :',
   boutonJoueurSuivant: 'Joueur suivant',
-  chargement: 'Préparation de la roue…',
-  ongletAnimateur: 'Animateur · H',
-  panneauTitre: 'Panneau animateur',
-  panneauRaccourcis: 'Raccourcis',
-  raccourcis: [
-    ['Espace / Entrée', 'Lancer la roue'],
-    ['1 à 4', 'Répondre'],
-    ['N', 'Joueur suivant'],
-    ['H', 'Afficher / masquer ce panneau'],
-    ['M', 'Son activé / coupé'],
-  ] as const,
-  panneauStats: 'Statistiques du jour (anonymes)',
-  statsLancers: (n: number) => `Lancers : ${n}`,
-  statsTotal: (bonnes: number, total: number) => `Bonnes réponses : ${bonnes} / ${total}`,
-  statsTheme: (theme: string, bonnes: number, total: number) => `${theme} : ${bonnes} / ${total}`,
-  son: (actif: boolean) => (actif ? 'Son : activé' : 'Son : coupé'),
-  razBouton: 'Remettre les statistiques à zéro',
-  razQuestion: 'Remettre les statistiques du jour à zéro ?',
-  razConfirmer: 'Oui, remettre à zéro',
-  razAnnuler: 'Annuler',
-  fermerPanneau: 'Fermer le panneau',
+
+  sonActive: 'Son activé',
+  sonCoupe: 'Son coupé',
 } as const;

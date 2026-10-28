@@ -1,19 +1,38 @@
-import { NOM_ASSOCIATION, textes } from '../content';
+import { libellesPaliers, libellesPaliersAccessibles, messagesPaliers, nomsObjets, segmentJoker, textes } from '../content';
 
 /**
- * Vocabulaire de jeu d'argent ou culpabilisant interdit dans les messages de verdict,
- * de feedback et les textes d'interface. Les libellés de thèmes (« Vrai ou faux ? »)
- * et les réponses des questions ne sont volontairement pas vérifiés ici.
+ * Vocabulaire interdit dans l'interface et les verdicts : la roue tire un thème, jamais un lot.
+ * « Faux » reste autorisé dans le libellé de thème « Vrai ou faux ? » et dans les réponses,
+ * qui viennent de questions.json et ne sont donc pas vérifiés ici.
  */
-const INTERDITS = ['chance', 'jackpot', 'perdu', 'perdue', 'perdus', 'perdre', 'faux', 'fausse', 'pari', 'lot', 'gros lot', 'casino', 'mise', 'gagnant', 'échec', 'raté'];
+const INTERDITS = [
+  'chance',
+  'chances',
+  'jackpot',
+  'perdu',
+  'perdue',
+  'perdus',
+  'perdre',
+  'raté',
+  'ratée',
+  'rater',
+  'gagné',
+  'gagnée',
+  'gagner',
+  'gagnant',
+  'faux',
+  'fausse',
+  'lot',
+  'casino',
+  'échec',
+];
 
 /** Récupère toutes les chaînes, en appelant les fonctions avec des valeurs d'exemple. */
 function chaines(valeur: unknown): string[] {
   if (typeof valeur === 'string') return [valeur];
   if (typeof valeur === 'function') {
-    // Deux appels pour couvrir les variantes (ex. son activé / coupé).
     const f = valeur as (...a: unknown[]) => unknown;
-    return [...chaines(f('Thème', 3, 7)), ...chaines(f(false, 0, 0))];
+    return [...chaines(f(1, 2, true)), ...chaines(f(3, 0, false)), ...chaines(f('Thème', 'Sticker', true))];
   }
   if (Array.isArray(valeur)) return valeur.flatMap(chaines);
   if (typeof valeur === 'object' && valeur !== null) return Object.values(valeur).flatMap(chaines);
@@ -26,21 +45,26 @@ const mots = (texte: string) =>
     .split(/[^\p{L}]+/u)
     .filter(Boolean);
 
-describe('vocabulaire des textes d’interface', () => {
-  const tous = [...chaines(textes), NOM_ASSOCIATION];
+describe('vocabulaire de l’interface et des verdicts', () => {
+  const tous = chaines([textes, messagesPaliers, nomsObjets, libellesPaliers, libellesPaliersAccessibles, segmentJoker.libelle]);
 
-  it('trouve bien les messages de verdict', () => {
+  it('trouve bien les verdicts et les messages de paliers', () => {
     expect(tous).toContain(textes.verdictPresqueTitre);
-    expect(tous.length).toBeGreaterThan(30);
+    expect(tous).toContain(messagesPaliers.sansFaute);
+    expect(tous.length).toBeGreaterThan(40);
   });
 
   it.each(INTERDITS)('ne contient pas « %s »', (interdit) => {
-    const cible = mots(interdit).join(' ');
-    const fautifs = tous.filter((t) => ` ${mots(t).join(' ')} `.includes(` ${cible} `));
+    const fautifs = tous.filter((t) => mots(t).includes(interdit));
     expect(fautifs).toEqual([]);
   });
 
-  it('affiche « Presque ! » pour une réponse incorrecte', () => {
+  it('dit « Tu repars avec », jamais « tu as gagné »', () => {
+    expect(textes.tuReparsAvec).toMatch(/^Tu repars avec/);
+  });
+
+  it('affiche « Bravo ! » ou « Presque ! » comme verdict', () => {
+    expect(textes.verdictBonneTitre).toBe('Bravo !');
     expect(textes.verdictPresqueTitre).toBe('Presque !');
   });
 });

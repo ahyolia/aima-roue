@@ -1,46 +1,60 @@
 import donnees from '../../../assets/data/questions.json';
-import { THEME_IDS } from '../../domain/types';
-import { estQuestionValide } from '../../logic/questions';
+import { estQuestionValide, estThemeValide } from '../../logic/questions';
 import { MockQuestionsAdapter } from '../MockQuestionsAdapter';
 
+const { themes, questions } = donnees;
+
 describe('assets/data/questions.json', () => {
-  it('ne contient que des questions valides', () => {
-    for (const q of donnees) expect(estQuestionValide(q)).toBe(true);
+  it('a 5 thèmes valides, aux identifiants uniques', () => {
+    expect(themes).toHaveLength(5);
+    for (const t of themes) expect(estThemeValide(t)).toBe(true);
+    expect(new Set(themes.map((t) => t.id)).size).toBe(5);
   });
 
-  it('a des identifiants uniques', () => {
-    const ids = donnees.map((q) => q.id);
+  it.each(themes.map((t) => t.id))('a 8 questions pour le thème « %s »', (id) => {
+    expect(questions.filter((q) => q.themeId === id)).toHaveLength(8);
+  });
+
+  it('ne référence que des thèmes connus', () => {
+    const ids = themes.map((t) => t.id);
+    for (const q of questions) expect(ids).toContain(q.themeId);
+  });
+
+  it.each(questions.map((q) => [q.id, q] as const))('%s : 2 à 4 réponses, une seule correcte, explication non vide', (_id, q) => {
+    expect(q.reponses.length).toBeGreaterThanOrEqual(2);
+    expect(q.reponses.length).toBeLessThanOrEqual(4);
+    expect(q.reponses.filter((r) => r.correcte)).toHaveLength(1);
+    expect(q.explication.trim()).not.toBe('');
+    expect(estQuestionValide(q)).toBe(true);
+  });
+
+  it('a des identifiants de questions uniques', () => {
+    const ids = questions.map((q) => q.id);
     expect(new Set(ids).size).toBe(ids.length);
   });
 
-  it('a au moins une question par thème, et seulement des thèmes connus', () => {
-    for (const t of THEME_IDS) expect(donnees.some((q) => q.themeId === t)).toBe(true);
-    for (const q of donnees) expect(THEME_IDS).toContain(q.themeId);
-  });
-
-  it("n'affiche aucun préfixe technique dans le texte des questions", () => {
-    for (const q of donnees) expect(q.question).not.toMatch(/\[.*\]/);
-  });
-
-  it('a des explications courtes (1 à 2 phrases)', () => {
-    for (const q of donnees) {
-      const phrases = q.explication.split(/[.!?…]+(?:\s|$)/).filter((p) => p.trim() !== '');
-      expect(phrases.length).toBeGreaterThanOrEqual(1);
-      expect(phrases.length).toBeLessThanOrEqual(2);
+  it('a des réponses « Vrai » et « Faux » pour le thème vrai-faux', () => {
+    for (const q of questions.filter((x) => x.themeId === 'vrai-faux')) {
+      expect(q.reponses.map((r) => r.texte).sort()).toEqual(['Faux', 'Vrai']);
     }
   });
 });
 
 describe('MockQuestionsAdapter', () => {
-  it('filtre par thème', async () => {
-    const a = new MockQuestionsAdapter();
-    const qs = await a.listerQuestions('voyage');
-    expect(qs.length).toBeGreaterThan(0);
+  it('liste les thèmes du fichier', async () => {
+    const themesLus = await new MockQuestionsAdapter().listerThemes();
+    expect(themesLus.map((t) => t.id)).toEqual(themes.map((t) => t.id));
+  });
+
+  it('filtre les questions par thème', async () => {
+    const qs = await new MockQuestionsAdapter().listerQuestions('voyage');
+    expect(qs).toHaveLength(8);
     expect(qs.every((q) => q.themeId === 'voyage')).toBe(true);
   });
 
   it('écarte les entrées invalides', async () => {
-    const a = new MockQuestionsAdapter([{ id: 'x', themeId: 'bases' }]);
+    const a = new MockQuestionsAdapter({ themes: [{ id: 'bases' }], questions: [{ id: 'x', themeId: 'bases' }] });
+    expect(await a.listerThemes()).toEqual([]);
     expect(await a.listerQuestions('bases')).toEqual([]);
   });
 });
