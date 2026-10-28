@@ -1,25 +1,32 @@
 import { useEffect, useState } from 'react';
+import { construireSegments, type Segment } from '../config/segments';
 import type { QuestionsAdapter } from '../data/QuestionsAdapter';
-import { type Question, THEME_IDS, type ThemeId } from '../domain/types';
+import type { Question, ThemeId } from '../domain/types';
 
-export type QuestionsParTheme = Record<ThemeId, Question[]>;
+export interface Contenu {
+  segments: Segment[];
+  questions: Record<ThemeId, Question[]>;
+}
 
-/** Charge toutes les questions une fois, via l'adaptateur. null pendant le chargement. */
-export function useQuestions(adapter: QuestionsAdapter): QuestionsParTheme | null {
-  const [questions, setQuestions] = useState<QuestionsParTheme | null>(null);
+/** Charge thèmes et questions une fois, via l'adaptateur. null pendant le chargement. */
+export function useContenu(adapter: QuestionsAdapter): Contenu | null {
+  const [contenu, setContenu] = useState<Contenu | null>(null);
 
   useEffect(() => {
     let actif = true;
-    Promise.all(THEME_IDS.map((id) => adapter.listerQuestions(id).catch(() => [])))
-      .then((listes) => {
-        if (!actif) return;
-        const parTheme = Object.fromEntries(THEME_IDS.map((id, i) => [id, listes[i]])) as QuestionsParTheme;
-        setQuestions(parTheme);
+    (async () => {
+      const themes = await adapter.listerThemes().catch(() => []);
+      const listes = await Promise.all(themes.map((t) => adapter.listerQuestions(t.id).catch(() => [])));
+      if (!actif) return;
+      setContenu({
+        segments: construireSegments(themes),
+        questions: Object.fromEntries(themes.map((t, i) => [t.id, listes[i]])),
       });
+    })();
     return () => {
       actif = false;
     };
   }, [adapter]);
 
-  return questions;
+  return contenu;
 }

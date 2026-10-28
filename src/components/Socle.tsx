@@ -8,7 +8,7 @@ import { cheminGoutte } from './decor/formes';
 export const LARGEUR_SOCLE = 700;
 export const HAUTEUR_SOCLE = 200;
 
-/** Socle sous la roue, avec la plaque « 1 lancer offert » (comme le bandeau de la référence). */
+/** Socle sous la roue, avec la plaque « 3 lancers, 3 questions » (comme le bandeau de la référence). */
 export function Socle() {
   return (
     <View style={{ width: LARGEUR_SOCLE, height: HAUTEUR_SOCLE }}>
@@ -30,7 +30,7 @@ export function Socle() {
         </G>
       </Svg>
       <View style={styles.plaque}>
-        <Texte style={styles.texte}>{textes.bandeauLancer}</Texte>
+        <Texte style={styles.texte}>{textes.sousTitre}</Texte>
       </View>
     </View>
   );
@@ -46,5 +46,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  texte: { fontFamily: polices.extraGras, fontSize: 36, color: couleurs.creme },
+  texte: { fontFamily: polices.extraGras, fontSize: 26, color: couleurs.creme },
 });

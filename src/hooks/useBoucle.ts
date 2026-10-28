@@ -24,9 +24,12 @@ export function useBoucle(actif: boolean, duree: number, easing: EasingFunction 
   return valeur;
 }
 
-/** Entrée « pop » : 0 → 1 avec un léger rebond (instantané en mouvement réduit). */
-export function useApparition(cle: unknown, reduit: boolean): Animated.Value {
-  const [valeur] = useState(() => new Animated.Value(0));
+/**
+ * Entrée 0 → 1 (instantanée en mouvement réduit).
+ * Sans retard : glissement + fondu de 280 ms. Avec retard : rebond (objet qui se colle).
+ */
+export function useApparition(cle: unknown, reduit: boolean, retard?: number): Animated.Value {
+  const [valeur] = useState(() => new Animated.Value(reduit ? 1 : 0));
 
   useEffect(() => {
     if (reduit) {
@@ -34,10 +37,16 @@ export function useApparition(cle: unknown, reduit: boolean): Animated.Value {
       return;
     }
     valeur.setValue(0);
-    const anim = Animated.spring(valeur, { toValue: 1, friction: 6, tension: 90, useNativeDriver: false });
+    const anim =
+      retard === undefined
+        ? Animated.timing(valeur, { toValue: 1, duration: 280, easing: Easing.out(Easing.cubic), useNativeDriver: false })
+        : Animated.sequence([
+            Animated.delay(retard),
+            Animated.spring(valeur, { toValue: 1, friction: 5, tension: 120, useNativeDriver: false }),
+          ]);
     anim.start();
     return () => anim.stop();
-  }, [cle, reduit, valeur]);
+  }, [cle, reduit, retard, valeur]);
 
   return valeur;
 }

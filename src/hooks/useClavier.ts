@@ -2,17 +2,15 @@ import { useEffect, useRef } from 'react';
 import { Platform } from 'react-native';
 
 export interface Raccourcis {
-  lancer: () => void;
-  suivant: () => void;
-  basculerPanneau: () => void;
+  /** Espace / Entrée hors d'un bouton : lancer, lancer suivant, résultat, joueur suivant. */
+  principal: () => void;
   basculerSon: () => void;
   chiffre: (n: number) => void;
-  echap: () => void;
 }
 
 const SELECTEUR_INTERACTIF = 'button, [role="button"], a, input, textarea, select';
 
-/** Raccourcis animateur. Espace/Entrée sont laissés aux boutons quand l'un d'eux a le focus. */
+/** Raccourcis clavier. Espace/Entrée sont laissés au bouton qui a le focus. */
 export function useClavier(raccourcis: Raccourcis): void {
   const ref = useRef(raccourcis);
   useEffect(() => {
@@ -33,22 +31,11 @@ export function useClavier(raccourcis: Raccourcis): void {
         case 'Enter':
           if (surInteractif) return;
           e.preventDefault();
-          r.lancer();
-          return;
-        case 'n':
-        case 'N':
-          r.suivant();
-          return;
-        case 'h':
-        case 'H':
-          r.basculerPanneau();
+          r.principal();
           return;
         case 'm':
         case 'M':
           r.basculerSon();
-          return;
-        case 'Escape':
-          r.echap();
           return;
         default:
           if (/^[1-9]$/.test(e.key)) r.chiffre(Number(e.key));

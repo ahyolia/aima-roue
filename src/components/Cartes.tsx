@@ -1,16 +1,18 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { ReactNode, Ref } from 'react';
-import { Animated, Easing, StyleSheet, View, type ViewInstance } from 'react-native';
-import { textes } from '../config/content';
-import { iconeTheme, libelleTheme, SEGMENTS } from '../config/segments';
+import { Animated, StyleSheet, View, type ViewInstance } from 'react-native';
+import { NB_LANCERS, nomsObjets, textes } from '../config/content';
+import type { Segment } from '../config/segments';
 import { couleurs, polices, tailles } from '../config/theme';
-import type { Question, SegmentId, ThemeId, Verdict } from '../domain/types';
-import { useApparition, useBoucle } from '../hooks/useBoucle';
+import type { Question, Recompense, Verdict } from '../domain/types';
+import { useApparition } from '../hooks/useBoucle';
 import { Bouton, Texte } from './base';
+import { Gouttes } from './Compteur';
+import { IllustrationObjet } from './Objets';
 
 export const LARGEUR_CARTE = 800;
 
-/** Carte avec ombre en aplat et entrée « pop » (simple apparition en mouvement réduit). */
+/** Carte avec ombre en aplat ; entrée en glissement + fondu (instantanée en mouvement réduit). */
 function Carte({
   children,
   cle,
@@ -25,11 +27,9 @@ function Carte({
   label?: string;
 }) {
   const a = useApparition(cle, reduit);
-  const scale = a.interpolate({ inputRange: [0, 1], outputRange: [0.82, 1] });
-  const translateY = a.interpolate({ inputRange: [0, 1], outputRange: [40, 0] });
-  const opacity = a.interpolate({ inputRange: [0, 0.4, 1], outputRange: [0, 1, 1] });
+  const translateY = a.interpolate({ inputRange: [0, 1], outputRange: [36, 0] });
   return (
-    <Animated.View style={{ opacity, transform: [{ translateY }, { scale }] }}>
+    <Animated.View style={{ opacity: a, transform: [{ translateY }] }}>
       <View style={styles.ombre} />
       <View style={styles.carte} ref={refCarte} tabIndex={refCarte ? -1 : undefined} accessibilityLabel={label}>
         {children}
@@ -39,67 +39,126 @@ function Carte({
 }
 
 /** Pastille de thème : disque de la couleur du segment + icône sur crème (jamais la couleur seule). */
-function Pastille({ id, taille }: { id: SegmentId; taille: number }) {
-  const couleur = SEGMENTS.find((s) => s.id === id)?.couleur ?? couleurs.aubergine;
+function Pastille({ segment, taille }: { segment: Segment; taille: number }) {
   return (
-    <View style={[styles.pastille, { width: taille, height: taille, backgroundColor: couleur }]}>
+    <View style={[styles.pastille, { width: taille, height: taille, backgroundColor: segment.couleur }]}>
       <View style={[styles.pastilleInterieur, { width: taille * 0.74, height: taille * 0.74 }]}>
-        <Ionicons name={iconeTheme(id)} size={taille * 0.42} color={couleurs.aubergine} />
+        <Ionicons name={segment.icone} size={taille * 0.42} color={couleurs.aubergine} />
       </View>
     </View>
   );
 }
 
-function Badge({ id }: { id: SegmentId }) {
+function Badge({ segment }: { segment: Segment }) {
   return (
     <View style={styles.badge}>
-      <Pastille id={id} taille={64} />
-      <Texte style={styles.themePetit}>{libelleTheme(id)}</Texte>
+      <Pastille segment={segment} taille={60} />
+      <Texte style={styles.themePetit}>{segment.libelle}</Texte>
     </View>
   );
 }
 
-export function CarteTheme({ id, reduit }: { id: SegmentId; reduit: boolean }) {
-  const t = useBoucle(!reduit, 900, Easing.inOut(Easing.sin));
-  const rebond = reduit ? 0 : t.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0, -18, 0] });
-  const rotate = reduit ? '0deg' : t.interpolate({ inputRange: [0, 0.25, 0.75, 1], outputRange: ['0deg', '-6deg', '6deg', '0deg'] });
+function BoutonPrincipal({
+  libelle,
+  icone = 'arrow-forward',
+  onPress,
+  refBouton,
+  disabled,
+}: {
+  libelle: string;
+  icone?: 'arrow-forward' | 'gift' | 'refresh' | 'sync';
+  onPress: () => void;
+  refBouton?: Ref<ViewInstance>;
+  disabled?: boolean;
+}) {
   return (
-    <Carte cle={id} reduit={reduit}>
-      <Texte style={styles.surtitre}>{textes.themeTire}</Texte>
-      <Animated.View style={{ transform: [{ translateY: rebond }, { rotate }] }}>
-        <Pastille id={id} taille={220} />
-      </Animated.View>
-      <Texte style={styles.themeGrand}>{libelleTheme(id)}</Texte>
+    <Bouton ref={refBouton} onPress={onPress} disabled={disabled} style={styles.boutonPrincipal}>
+      <Texte style={styles.texteBoutonPrincipal}>{libelle}</Texte>
+      <Ionicons name={icone} size={34} color={couleurs.creme} />
+    </Bouton>
+  );
+}
+
+/* ---------- Accueil ---------- */
+
+export function CarteAccueil({
+  pret,
+  onCommencer,
+  refBouton,
+  reduit,
+}: {
+  pret: boolean;
+  onCommencer: () => void;
+  refBouton: Ref<ViewInstance>;
+  reduit: boolean;
+}) {
+  return (
+    <Carte cle="accueil" reduit={reduit}>
+      <Texte style={styles.titre} role="heading" aria-level={1}>
+        {textes.titre}
+      </Texte>
+      <Texte style={styles.sousTitre}>{textes.sousTitre}</Texte>
+      <BoutonPrincipal
+        libelle={pret ? textes.boutonCommencer : textes.chargement}
+        icone="sync"
+        onPress={onCommencer}
+        refBouton={refBouton}
+        disabled={!pret}
+      />
+      <Texte style={styles.aide}>{textes.aideClavier}</Texte>
     </Carte>
   );
 }
 
-const THEMES_JOKER = SEGMENTS.filter((s) => s.id !== 'joker');
+/* ---------- Rotation et thème ---------- */
+
+export function CarteRotation({ reduit }: { reduit: boolean }) {
+  return (
+    <Carte cle="rotation" reduit={reduit}>
+      <Ionicons name="sync" size={72} color={couleurs.aubergine} />
+      <Texte style={styles.themeGrand}>{textes.rotationEnCours}</Texte>
+    </Carte>
+  );
+}
+
+export function CarteTheme({ segment, reduit }: { segment: Segment; reduit: boolean }) {
+  return (
+    <Carte cle={`theme-${segment.id}`} reduit={reduit}>
+      <Texte style={styles.surtitre}>{textes.themeTire}</Texte>
+      <Pastille segment={segment} taille={200} />
+      <Texte style={styles.themeGrand}>{segment.libelle}</Texte>
+    </Carte>
+  );
+}
 
 export function ChoixJoker({
+  joker,
+  themes,
   onChoisir,
   refPremier,
   reduit,
 }: {
-  onChoisir: (id: ThemeId) => void;
+  joker: Segment;
+  themes: Segment[];
+  onChoisir: (id: string) => void;
   refPremier: Ref<ViewInstance>;
   reduit: boolean;
 }) {
   return (
     <Carte cle="joker" reduit={reduit}>
-      <Badge id="joker" />
+      <Badge segment={joker} />
       <Texte style={styles.consigne}>{textes.jokerConsigne}</Texte>
       <View style={styles.liste}>
-        {THEMES_JOKER.map((s, i) => (
+        {themes.map((s, i) => (
           <Bouton
             key={s.id}
             ref={i === 0 ? refPremier : undefined}
             accessibilityLabel={`${i + 1}. ${s.libelle}`}
-            onPress={() => onChoisir(s.id as ThemeId)}
-            style={styles.choix}
+            onPress={() => onChoisir(s.id)}
+            style={[styles.choix, styles.choixCompact]}
           >
             <Texte style={styles.numero}>{i + 1}</Texte>
-            <Pastille id={s.id} taille={52} />
+            <Pastille segment={s} taille={48} />
             <Texte style={styles.texteChoix}>{s.libelle}</Texte>
           </Bouton>
         ))}
@@ -108,23 +167,27 @@ export function ChoixJoker({
   );
 }
 
+/* ---------- Question et verdict ---------- */
+
 export function CarteQuestion({
   question,
-  themeId,
+  segment,
   onRepondre,
   refCarte,
   reduit,
 }: {
   question: Question;
-  themeId: ThemeId;
+  segment: Segment;
   onRepondre: (index: number) => void;
   refCarte: Ref<ViewInstance>;
   reduit: boolean;
 }) {
   return (
-    <Carte cle={question.id} reduit={reduit} refCarte={refCarte} label={question.question}>
-      <Badge id={themeId} />
-      <Texte style={styles.question}>{question.question}</Texte>
+    <Carte cle={question.id} reduit={reduit} refCarte={refCarte} label={`${segment.libelle}. ${question.question}`}>
+      <Badge segment={segment} />
+      <Texte style={styles.question} role="heading" aria-level={2}>
+        {question.question}
+      </Texte>
       <Texte style={styles.consigne}>{textes.consigneReponse}</Texte>
       <View style={styles.liste}>
         {question.reponses.map((r, i) => (
@@ -145,79 +208,106 @@ export function CarteQuestion({
 
 export function CarteReponse({
   question,
-  indexChoisi,
   verdict,
+  lancer,
   onSuivant,
   refSuivant,
   reduit,
 }: {
   question: Question;
-  indexChoisi: number;
   verdict: Verdict;
+  lancer: number;
   onSuivant: () => void;
   refSuivant: Ref<ViewInstance>;
   reduit: boolean;
 }) {
   const bonne = verdict === 'bonne';
-  const t = useBoucle(!reduit, 1000, Easing.inOut(Easing.sin));
-  const scale = reduit ? 1 : t.interpolate({ inputRange: [0, 0.5, 1], outputRange: [1, 1.15, 1] });
+  const correcte = question.reponses.find((r) => r.correcte);
+  const dernier = lancer >= NB_LANCERS;
   return (
     <Carte cle={`${question.id}-reponse`} reduit={reduit}>
       <View style={styles.badge}>
-        <Animated.View style={{ transform: [{ scale }] }}>
-          <Ionicons
-            name={bonne ? 'sparkles' : 'heart'}
-            size={72}
-            color={bonne ? couleurs.petrole : couleurs.aubergine}
-          />
-        </Animated.View>
+        <Ionicons name={bonne ? 'sparkles' : 'bulb'} size={64} color={couleurs.aubergine} />
         <Texte style={styles.verdict}>{bonne ? textes.verdictBonneTitre : textes.verdictPresqueTitre}</Texte>
       </View>
       <Texte style={styles.message}>{bonne ? textes.verdictBonneMessage : textes.verdictPresqueMessage}</Texte>
 
-      <View style={styles.liste}>
-        {question.reponses.map((r, i) => {
-          const estCorrecte = r.correcte;
-          const estChoisie = i === indexChoisi;
-          return (
-            <View
-              key={r.texte}
-              style={[
-                styles.choix,
-                estCorrecte && styles.choixCorrect,
-                estChoisie && !estCorrecte && styles.choixChoisi,
-              ]}
-            >
-              {estCorrecte ? (
-                <Ionicons name="checkmark-circle" size={40} color={couleurs.creme} />
-              ) : estChoisie ? (
-                <Ionicons name="arrow-forward-circle" size={40} color={couleurs.aubergine} />
-              ) : (
-                <View style={{ width: 40 }} />
-              )}
-              <View style={styles.colonneChoix}>
-                <Texte style={[styles.texteChoix, estCorrecte && styles.texteCreme]}>{r.texte}</Texte>
-                {estCorrecte ? (
-                  <Texte style={[styles.etiquette, styles.texteCreme]}>{textes.etiquetteBonneReponse}</Texte>
-                ) : estChoisie ? (
-                  <Texte style={styles.etiquette}>{textes.etiquetteTaReponse}</Texte>
-                ) : null}
-              </View>
-            </View>
-          );
-        })}
+      <View style={[styles.choix, styles.choixCorrect]}>
+        <Ionicons name="checkmark-circle" size={44} color={couleurs.creme} />
+        <View style={styles.colonneChoix}>
+          <Texte style={[styles.etiquette, styles.texteCreme]}>{textes.etiquetteBonneReponse}</Texte>
+          <Texte style={[styles.texteChoix, styles.texteCreme]}>{correcte?.texte}</Texte>
+        </View>
       </View>
 
       <View style={styles.explication}>
-        <Ionicons name="bulb" size={36} color={couleurs.aubergine} />
+        <Ionicons name="information-circle" size={40} color={couleurs.aubergine} />
         <Texte style={styles.texteExplication}>{question.explication}</Texte>
       </View>
 
-      <Bouton ref={refSuivant} onPress={onSuivant} style={styles.boutonPrincipal}>
-        <Texte style={styles.texteBoutonPrincipal}>{textes.boutonJoueurSuivant}</Texte>
-        <Ionicons name="arrow-forward" size={32} color={couleurs.creme} />
-      </Bouton>
+      <BoutonPrincipal
+        libelle={dernier ? textes.voirRecompenses : textes.lancerSuivant(lancer + 1)}
+        icone={dernier ? 'gift' : 'sync'}
+        onPress={onSuivant}
+        refBouton={refSuivant}
+      />
     </Carte>
+  );
+}
+
+/* ---------- Résultat ---------- */
+
+export function CarteResultat({
+  bonnes,
+  resultats,
+  recompense,
+  onSuivant,
+  refSuivant,
+  reduit,
+}: {
+  bonnes: number;
+  resultats: Verdict[];
+  recompense: Recompense;
+  onSuivant: () => void;
+  refSuivant: Ref<ViewInstance>;
+  reduit: boolean;
+}) {
+  return (
+    <Carte cle="resultat" reduit={reduit}>
+      <View style={styles.badge}>
+        <Texte style={styles.score} accessibilityLabel={textes.scoreAccessible(bonnes)}>
+          {textes.score(bonnes)}
+        </Texte>
+        <Gouttes resultats={resultats} lancer={NB_LANCERS} taille={72} />
+      </View>
+      <Texte style={styles.messagePalier} role="heading" aria-level={2}>
+        {recompense.message}
+      </Texte>
+      <Texte style={styles.surtitre}>{textes.tuReparsAvec}</Texte>
+      <View style={styles.objets}>
+        {recompense.objets.map((o, i) => (
+          <ObjetColle key={o} index={i} reduit={reduit}>
+            <IllustrationObjet id={o} taille={130} />
+            <Texte style={styles.nomObjet}>{nomsObjets[o]}</Texte>
+          </ObjetColle>
+        ))}
+      </View>
+      <BoutonPrincipal libelle={textes.boutonJoueurSuivant} icone="refresh" onPress={onSuivant} refBouton={refSuivant} />
+    </Carte>
+  );
+}
+
+/** Carte d'objet qui « se colle » : légère rotation + rebond, décalée de 200 ms par objet. */
+function ObjetColle({ children, index, reduit }: { children: ReactNode; index: number; reduit: boolean }) {
+  const a = useApparition(`objet-${index}`, reduit, 200 * index + 250);
+  const scale = a.interpolate({ inputRange: [0, 1], outputRange: [1.5, 1] });
+  const penche = index % 2 === 0 ? -4 : 4;
+  const rotate = a.interpolate({ inputRange: [0, 1], outputRange: [`${penche * 4}deg`, `${penche}deg`] });
+  const opacity = a.interpolate({ inputRange: [0, 0.2, 1], outputRange: [0, 1, 1], extrapolate: 'clamp' });
+  return (
+    <Animated.View style={[styles.objet, { opacity, transform: reduit ? [] : [{ scale }, { rotate }] }]}>
+      {children}
+    </Animated.View>
   );
 }
 
@@ -226,25 +316,28 @@ const RAYON = 44;
 const styles = StyleSheet.create({
   ombre: {
     position: 'absolute',
-    top: 16,
-    left: 16,
-    right: -16,
-    bottom: -16,
+    top: 14,
+    left: 14,
+    right: -14,
+    bottom: -14,
     borderRadius: RAYON,
-    backgroundColor: couleurs.orange,
+    backgroundColor: couleurs.aubergine,
   },
   carte: {
     width: LARGEUR_CARTE,
     backgroundColor: couleurs.creme,
     borderColor: couleurs.aubergine,
-    borderWidth: 6,
+    borderWidth: 4,
     borderRadius: RAYON,
     paddingHorizontal: 44,
-    paddingVertical: 36,
-    gap: 22,
+    paddingVertical: 30,
+    gap: 18,
     alignItems: 'center',
   },
-  pastille: { borderRadius: 999, alignItems: 'center', justifyContent: 'center' },
+  titre: { fontFamily: polices.titre, fontSize: 64, lineHeight: 112, textAlign: 'center' },
+  sousTitre: { fontFamily: polices.extraGras, fontSize: 40, textAlign: 'center' },
+  aide: { fontFamily: polices.texte, fontSize: 24 },
+  pastille: { borderRadius: 999, alignItems: 'center', justifyContent: 'center', borderWidth: 3, borderColor: couleurs.aubergine },
   pastilleInterieur: {
     borderRadius: 999,
     backgroundColor: couleurs.creme,
@@ -252,36 +345,37 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   badge: { flexDirection: 'row', alignItems: 'center', gap: 18 },
-  surtitre: { fontFamily: polices.gras, fontSize: 40 },
-  themeGrand: { fontFamily: polices.extraGras, fontSize: 60, textAlign: 'center' },
-  themePetit: { fontFamily: polices.extraGras, fontSize: 32 },
-  consigne: { fontFamily: polices.texte, fontSize: tailles.texte },
-  question: { fontFamily: polices.extraGras, fontSize: tailles.question, textAlign: 'center', lineHeight: 52 },
-  liste: { width: '100%', gap: 14 },
+  surtitre: { fontFamily: polices.gras, fontSize: 34 },
+  themeGrand: { fontFamily: polices.extraGras, fontSize: 56, textAlign: 'center' },
+  themePetit: { fontFamily: polices.extraGras, fontSize: 30 },
+  consigne: { fontFamily: polices.texte, fontSize: 26 },
+  question: { fontFamily: polices.extraGras, fontSize: tailles.question, textAlign: 'center', lineHeight: 50 },
+  liste: { width: '100%', gap: 12 },
   choix: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
     gap: 18,
-    minHeight: 80,
-    paddingHorizontal: 22,
-    paddingVertical: 10,
+    minHeight: 76,
+    width: '100%',
+    paddingHorizontal: 20,
+    paddingVertical: 8,
     borderRadius: 28,
     borderWidth: 4,
     borderColor: couleurs.aubergine,
     backgroundColor: couleurs.creme,
   },
-  choixCorrect: { backgroundColor: couleurs.petrole, borderColor: couleurs.petrole },
-  choixChoisi: { borderStyle: 'dashed' },
+  choixCompact: { minHeight: 64 },
+  choixCorrect: { backgroundColor: couleurs.petrole },
   colonneChoix: { flexShrink: 1 },
   numero: {
     fontFamily: polices.extraGras,
-    fontSize: 30,
-    width: 52,
-    height: 52,
-    lineHeight: 52,
+    fontSize: 28,
+    width: 50,
+    height: 50,
+    lineHeight: 50,
     textAlign: 'center',
-    borderRadius: 26,
+    borderRadius: 25,
     backgroundColor: couleurs.lime,
     color: couleurs.aubergine,
     overflow: 'hidden',
@@ -308,6 +402,21 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     paddingHorizontal: 44,
     paddingVertical: 16,
+    minHeight: 72,
   },
   texteBoutonPrincipal: { fontFamily: polices.extraGras, fontSize: 32, color: couleurs.creme },
+  score: { fontFamily: polices.extraGras, fontSize: 88, lineHeight: 100 },
+  messagePalier: { fontFamily: polices.extraGras, fontSize: 36, textAlign: 'center', lineHeight: 46 },
+  objets: { flexDirection: 'row', gap: 28, justifyContent: 'center' },
+  objet: {
+    alignItems: 'center',
+    gap: 4,
+    width: 210,
+    paddingVertical: 12,
+    backgroundColor: couleurs.creme,
+    borderColor: couleurs.aubergine,
+    borderWidth: 4,
+    borderRadius: 28,
+  },
+  nomObjet: { fontFamily: polices.extraGras, fontSize: 30 },
 });
