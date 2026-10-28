@@ -1,233 +1,807 @@
-[
-  {
-    "id": "bases-1",
-    "themeId": "bases",
-    "question": "Que se passe-t-il juste avant un don de sang ?",
-    "reponses": [
-      { "texte": "Un entretien confidentiel avec un professionnel de santé", "correcte": true },
-      { "texte": "Rien, on donne directement", "correcte": false },
-      { "texte": "Un examen écrit", "correcte": false }
-    ],
-    "explication": "Un petit entretien confidentiel permet de vérifier que le don se passe en toute sécurité, pour toi comme pour la personne qui recevra le sang.",
-    "aValider": true
-  },
-  {
-    "id": "bases-2",
-    "themeId": "bases",
-    "question": "Faut-il venir à jeun pour donner son sang ?",
-    "reponses": [
-      { "texte": "Non, il vaut mieux avoir mangé et bu", "correcte": true },
-      { "texte": "Oui, à jeun obligatoirement", "correcte": false }
-    ],
-    "explication": "On vient le ventre plein et bien hydraté : c'est la meilleure façon de se sentir en forme pendant et après le don.",
-    "aValider": true
-  },
-  {
-    "id": "bases-3",
-    "themeId": "bases",
-    "question": "Le matériel utilisé pour le prélèvement est…",
-    "reponses": [
-      { "texte": "Stérile et à usage unique", "correcte": true },
-      { "texte": "Nettoyé puis réutilisé", "correcte": false },
-      { "texte": "Apporté par le donneur", "correcte": false }
-    ],
-    "explication": "Tout le matériel est stérile et utilisé une seule fois : donner son sang ne présente aucun risque d'infection.",
-    "aValider": true
-  },
-  {
-    "id": "bases-4",
-    "themeId": "bases",
-    "question": "Que fait-on juste après son don ?",
-    "reponses": [
-      { "texte": "On se pose et on prend une collation", "correcte": true },
-      { "texte": "On file directement au sport", "correcte": false },
-      { "texte": "On repart sans s'arrêter", "correcte": false }
-    ],
-    "explication": "Un moment de repos avec une collation fait partie du don : l'équipe en profite pour vérifier que tout va bien.",
-    "aValider": true
-  },
-  {
-    "id": "groupes-1",
-    "themeId": "groupes",
-    "question": "Quels sont les groupes du système ABO ?",
-    "reponses": [
-      { "texte": "A, B, AB et O", "correcte": true },
-      { "texte": "A, B et C", "correcte": false },
-      { "texte": "1, 2, 3 et 4", "correcte": false }
-    ],
-    "explication": "Le système ABO classe le sang en quatre groupes : A, B, AB et O. Chacun a son rôle à jouer !",
-    "aValider": true
-  },
-  {
-    "id": "groupes-2",
-    "themeId": "groupes",
-    "question": "À quoi correspond le « Rhésus » positif ou négatif ?",
-    "reponses": [
-      { "texte": "À la présence ou non d'une protéine sur les globules rouges", "correcte": true },
-      { "texte": "Au niveau de forme du donneur", "correcte": false },
-      { "texte": "Au taux de sucre dans le sang", "correcte": false }
-    ],
-    "explication": "Le Rhésus indique si une protéine est présente ou non à la surface des globules rouges. Ce n'est pas un indicateur de santé.",
-    "aValider": true
-  },
-  {
-    "id": "groupes-3",
-    "themeId": "groupes",
-    "question": "Peut-on transfuser n'importe quel sang à n'importe qui ?",
-    "reponses": [
-      { "texte": "Non, il faut vérifier la compatibilité", "correcte": true },
-      { "texte": "Oui, tous les groupes sont compatibles", "correcte": false }
-    ],
-    "explication": "Les équipes vérifient toujours la compatibilité entre donneur et receveur : c'est pour ça que tous les groupes sont précieux.",
-    "aValider": true
-  },
-  {
-    "id": "groupes-4",
-    "themeId": "groupes",
-    "question": "Comment connaître son groupe sanguin ?",
-    "reponses": [
-      { "texte": "Grâce à une analyse de sang, par exemple lors d'un don", "correcte": true },
-      { "texte": "En regardant la couleur de ses yeux", "correcte": false },
-      { "texte": "Selon son signe astrologique", "correcte": false }
-    ],
-    "explication": "Seule une analyse de sang permet de le connaître. Bonne nouvelle : pas besoin de le savoir avant de venir donner.",
-    "aValider": true
-  },
-  {
-    "id": "association-1",
-    "themeId": "association",
-    "question": "Quel est le rôle d'une association de donneurs de sang ?",
-    "reponses": [
-      { "texte": "Informer, sensibiliser et accompagner les donneurs", "correcte": true },
-      { "texte": "Remplacer l'hôpital", "correcte": false },
-      { "texte": "Vendre des poches de sang", "correcte": false }
-    ],
-    "explication": "L'association fait connaître le don, répond aux questions et accompagne celles et ceux qui souhaitent se lancer.",
-    "aValider": true
-  },
-  {
-    "id": "association-2",
-    "themeId": "association",
-    "question": "Qui sont les membres de l'association ?",
-    "reponses": [
-      { "texte": "Des bénévoles qui donnent de leur temps", "correcte": true },
-      { "texte": "Des employés d'un laboratoire", "correcte": false },
-      { "texte": "Uniquement des médecins", "correcte": false }
-    ],
-    "explication": "Ce sont des bénévoles engagés, de tous horizons, qui partagent l'envie d'aider les autres.",
-    "aValider": true
-  },
-  {
-    "id": "association-3",
-    "themeId": "association",
-    "question": "Comment s'engager sans forcément donner son sang ?",
-    "reponses": [
-      { "texte": "En devenant bénévole ou en parlant du don autour de soi", "correcte": true },
-      { "texte": "Ce n'est pas possible", "correcte": false }
-    ],
-    "explication": "Tout le monde peut aider : en rejoignant les bénévoles, ou simplement en parlant du don à ses proches.",
-    "aValider": true
-  },
-  {
-    "id": "association-4",
-    "themeId": "association",
-    "question": "Où peut-on donner son sang en Nouvelle-Calédonie ?",
-    "reponses": [
-      { "texte": "Au centre de don ou lors de collectes organisées", "correcte": true },
-      { "texte": "En pharmacie", "correcte": false },
-      { "texte": "Chez soi, avec un kit", "correcte": false }
-    ],
-    "explication": "On peut donner au centre de don ou lors des collectes organisées un peu partout : l'association aide à les faire connaître.",
-    "aValider": true
-  },
-  {
-    "id": "vraiFaux-1",
-    "themeId": "vraiFaux",
-    "question": "Vrai ou faux : le don du sang est bénévole et anonyme.",
-    "reponses": [
-      { "texte": "Vrai", "correcte": true },
-      { "texte": "Faux", "correcte": false }
-    ],
-    "explication": "C'est vrai : on donne gratuitement, et le receveur ne connaît pas l'identité du donneur. Un vrai geste de solidarité.",
-    "aValider": true
-  },
-  {
-    "id": "vraiFaux-2",
-    "themeId": "vraiFaux",
-    "question": "Vrai ou faux : il faut connaître son groupe sanguin avant de venir donner.",
-    "reponses": [
-      { "texte": "Vrai", "correcte": false },
-      { "texte": "Faux", "correcte": true }
-    ],
-    "explication": "Pas besoin ! Le groupe sanguin est déterminé à partir du don lui-même.",
-    "aValider": true
-  },
-  {
-    "id": "vraiFaux-3",
-    "themeId": "vraiFaux",
-    "question": "Vrai ou faux : un seul don peut aider plusieurs patients.",
-    "reponses": [
-      { "texte": "Vrai", "correcte": true },
-      { "texte": "Faux", "correcte": false }
-    ],
-    "explication": "C'est vrai : le sang est séparé en plusieurs composants, et chacun peut aider une personne différente.",
-    "aValider": true
-  },
-  {
-    "id": "vraiFaux-4",
-    "themeId": "vraiFaux",
-    "question": "Vrai ou faux : après un don, on reste épuisé pendant des semaines.",
-    "reponses": [
-      { "texte": "Vrai", "correcte": false },
-      { "texte": "Faux", "correcte": true }
-    ],
-    "explication": "C'est une idée reçue : après un temps de repos et une collation, la plupart des donneurs reprennent leur journée normalement.",
-    "aValider": true
-  },
-  {
-    "id": "voyage-1",
-    "themeId": "voyage",
-    "question": "Juste après le prélèvement, où part la poche ?",
-    "reponses": [
-      { "texte": "Au laboratoire, pour être analysée et préparée", "correcte": true },
-      { "texte": "Directement chez un patient", "correcte": false },
-      { "texte": "Au congélateur, sans contrôle", "correcte": false }
-    ],
-    "explication": "Chaque poche est d'abord analysée et préparée au laboratoire : c'est la première étape de son voyage.",
-    "aValider": true
-  },
-  {
-    "id": "voyage-2",
-    "themeId": "voyage",
-    "question": "Pourquoi sépare-t-on le sang en plusieurs composants ?",
-    "reponses": [
-      { "texte": "Pour donner à chaque patient ce dont il a besoin", "correcte": true },
-      { "texte": "Pour qu'il prenne moins de place", "correcte": false },
-      { "texte": "Pour changer sa couleur", "correcte": false }
-    ],
-    "explication": "Globules rouges, plasma, plaquettes : chaque composant répond à des besoins différents, ce qui permet d'aider plus de monde.",
-    "aValider": true
-  },
-  {
-    "id": "voyage-3",
-    "themeId": "voyage",
-    "question": "Pourquoi chaque poche est-elle étiquetée et suivie ?",
-    "reponses": [
-      { "texte": "Pour la suivre en toute sécurité, du donneur au patient", "correcte": true },
-      { "texte": "Pour la décorer", "correcte": false }
-    ],
-    "explication": "La traçabilité garantit la sécurité à chaque étape du voyage, tout en préservant l'anonymat du donneur.",
-    "aValider": true
-  },
-  {
-    "id": "voyage-4",
-    "themeId": "voyage",
-    "question": "Le sang donné se conserve-t-il indéfiniment ?",
-    "reponses": [
-      { "texte": "Non, chaque composant se conserve un temps limité", "correcte": true },
-      { "texte": "Oui, pour toujours", "correcte": false }
-    ],
-    "explication": "Les composants ont une durée de conservation limitée : c'est pour ça que les dons réguliers sont si précieux.",
-    "aValider": true
-  }
-]
+{
+  "themes": [
+    {
+      "id": "bases",
+      "libelle": "Les bases du don",
+      "icone": "heart"
+    },
+    {
+      "id": "groupes",
+      "libelle": "Groupes sanguins",
+      "icone": "people"
+    },
+    {
+      "id": "vrai-faux",
+      "libelle": "Vrai ou faux ?",
+      "icone": "help-circle"
+    },
+    {
+      "id": "voyage",
+      "libelle": "Le voyage d'une poche",
+      "icone": "map"
+    },
+    {
+      "id": "appli",
+      "libelle": "L'appli Aïma",
+      "icone": "phone-portrait"
+    }
+  ],
+  "questions": [
+    {
+      "id": "bases-1",
+      "themeId": "bases",
+      "question": "À partir de quel âge peut-on donner son sang ?",
+      "reponses": [
+        {
+          "texte": "18 ans",
+          "correcte": true
+        },
+        {
+          "texte": "16 ans",
+          "correcte": false
+        },
+        {
+          "texte": "21 ans",
+          "correcte": false
+        },
+        {
+          "texte": "25 ans",
+          "correcte": false
+        }
+      ],
+      "explication": "Dès 18 ans ! C'est pour ça que les 18-35 ans comptent autant pour les réserves."
+    },
+    {
+      "id": "bases-2",
+      "themeId": "bases",
+      "question": "Avant de donner son sang, il vaut mieux…",
+      "reponses": [
+        {
+          "texte": "Avoir bien mangé et bien bu",
+          "correcte": true
+        },
+        {
+          "texte": "Venir le ventre vide",
+          "correcte": false
+        },
+        {
+          "texte": "Faire une grosse séance de sport",
+          "correcte": false
+        },
+        {
+          "texte": "Ne boire qu'un café",
+          "correcte": false
+        }
+      ],
+      "explication": "On ne vient jamais à jeun : un bon repas et de l'eau, et le don se passe tout en douceur."
+    },
+    {
+      "id": "bases-3",
+      "themeId": "bases",
+      "question": "Combien de temps dure le prélèvement lui-même ?",
+      "reponses": [
+        {
+          "texte": "Environ 10 minutes",
+          "correcte": true
+        },
+        {
+          "texte": "Environ 1 heure",
+          "correcte": false
+        },
+        {
+          "texte": "Une demi-journée",
+          "correcte": false
+        }
+      ],
+      "explication": "Le prélèvement dure environ 10 minutes. Avec l'accueil, l'entretien et la collation, compte environ 1 heure en tout."
+    },
+    {
+      "id": "bases-4",
+      "themeId": "bases",
+      "question": "Quel volume de sang prélève-t-on environ lors d'un don ?",
+      "reponses": [
+        {
+          "texte": "Environ un demi-litre",
+          "correcte": true
+        },
+        {
+          "texte": "Un petit verre (20 cl)",
+          "correcte": false
+        },
+        {
+          "texte": "Environ 2 litres",
+          "correcte": false
+        }
+      ],
+      "explication": "Entre 420 et 480 ml environ, selon ton poids et ta taille. Ton corps en contient environ 5 litres."
+    },
+    {
+      "id": "bases-5",
+      "themeId": "bases",
+      "question": "Que fait-on juste après le don ?",
+      "reponses": [
+        {
+          "texte": "On prend une collation et on se repose",
+          "correcte": true
+        },
+        {
+          "texte": "On repart en courant",
+          "correcte": false
+        },
+        {
+          "texte": "On enchaîne avec une séance de sport",
+          "correcte": false
+        }
+      ],
+      "explication": "Une petite pause d'une vingtaine de minutes avec une collation : c'est le moment convivial du don !"
+    },
+    {
+      "id": "bases-6",
+      "themeId": "bases",
+      "question": "Avant le don, avec qui as-tu un petit entretien ?",
+      "reponses": [
+        {
+          "texte": "Un professionnel de santé (médecin ou infirmier)",
+          "correcte": true
+        },
+        {
+          "texte": "Un pharmacien",
+          "correcte": false
+        },
+        {
+          "texte": "Personne, on donne directement",
+          "correcte": false
+        }
+      ],
+      "explication": "Un entretien confidentiel vérifie que tout va bien, pour toi comme pour la personne qui recevra ton sang."
+    },
+    {
+      "id": "bases-7",
+      "themeId": "bases",
+      "question": "Le matériel utilisé pour le prélèvement est…",
+      "reponses": [
+        {
+          "texte": "Stérile et à usage unique",
+          "correcte": true
+        },
+        {
+          "texte": "Réutilisé après nettoyage",
+          "correcte": false
+        },
+        {
+          "texte": "Apporté par le donneur",
+          "correcte": false
+        }
+      ],
+      "explication": "Tout le matériel est stérile et jeté après chaque don : donner son sang ne peut pas te transmettre de maladie."
+    },
+    {
+      "id": "bases-8",
+      "themeId": "bases",
+      "question": "Après le don, que vaut-il mieux éviter pendant quelques heures ?",
+      "reponses": [
+        {
+          "texte": "Un effort physique intense",
+          "correcte": true
+        },
+        {
+          "texte": "Boire de l'eau",
+          "correcte": false
+        },
+        {
+          "texte": "Manger",
+          "correcte": false
+        }
+      ],
+      "explication": "On évite le sport intense pendant quelques heures. Boire et manger, au contraire, c'est recommandé !"
+    },
+    {
+      "id": "groupes-1",
+      "themeId": "groupes",
+      "question": "Combien existe-t-il de groupes sanguins principaux ?",
+      "reponses": [
+        {
+          "texte": "8",
+          "correcte": true
+        },
+        {
+          "texte": "4",
+          "correcte": false
+        },
+        {
+          "texte": "12",
+          "correcte": false
+        },
+        {
+          "texte": "16",
+          "correcte": false
+        }
+      ],
+      "explication": "8 groupes : A, B, AB et O, chacun en version + ou −. Ce sont les 8 jauges des stocks dans l'appli Aïma."
+    },
+    {
+      "id": "groupes-2",
+      "themeId": "groupes",
+      "question": "Quel groupe peut donner ses globules rouges à tout le monde ?",
+      "reponses": [
+        {
+          "texte": "O−",
+          "correcte": true
+        },
+        {
+          "texte": "AB+",
+          "correcte": false
+        },
+        {
+          "texte": "A+",
+          "correcte": false
+        },
+        {
+          "texte": "B−",
+          "correcte": false
+        }
+      ],
+      "explication": "Le O− est le « donneur universel » pour les globules rouges : très précieux en cas d'urgence !"
+    },
+    {
+      "id": "groupes-3",
+      "themeId": "groupes",
+      "question": "Quel groupe peut recevoir les globules rouges de tous les groupes ?",
+      "reponses": [
+        {
+          "texte": "AB+",
+          "correcte": true
+        },
+        {
+          "texte": "O−",
+          "correcte": false
+        },
+        {
+          "texte": "A−",
+          "correcte": false
+        },
+        {
+          "texte": "B+",
+          "correcte": false
+        }
+      ],
+      "explication": "Le AB+ est le « receveur universel » : il est compatible avec les globules rouges de tous les groupes."
+    },
+    {
+      "id": "groupes-4",
+      "themeId": "groupes",
+      "question": "Que signifient le « + » et le « − » d'un groupe sanguin ?",
+      "reponses": [
+        {
+          "texte": "Le facteur Rhésus",
+          "correcte": true
+        },
+        {
+          "texte": "Le niveau de fer",
+          "correcte": false
+        },
+        {
+          "texte": "Le nombre de dons déjà faits",
+          "correcte": false
+        }
+      ],
+      "explication": "C'est le facteur Rhésus : présent (+) ou absent (−) à la surface des globules rouges."
+    },
+    {
+      "id": "groupes-5",
+      "themeId": "groupes",
+      "question": "Une personne du groupe O− peut recevoir des globules rouges…",
+      "reponses": [
+        {
+          "texte": "Seulement du groupe O−",
+          "correcte": true
+        },
+        {
+          "texte": "De tous les groupes",
+          "correcte": false
+        },
+        {
+          "texte": "Seulement du groupe AB+",
+          "correcte": false
+        }
+      ],
+      "explication": "Le O− peut donner à tout le monde, mais ne peut recevoir que du O− : chaque donneur O− compte énormément."
+    },
+    {
+      "id": "groupes-6",
+      "themeId": "groupes",
+      "question": "Une personne du groupe A+ peut-elle recevoir des globules rouges O− ?",
+      "reponses": [
+        {
+          "texte": "Oui",
+          "correcte": true
+        },
+        {
+          "texte": "Non",
+          "correcte": false
+        }
+      ],
+      "explication": "Oui ! Le O− est compatible avec tous les groupes, A+ compris."
+    },
+    {
+      "id": "groupes-7",
+      "themeId": "groupes",
+      "question": "Pourquoi a-t-on besoin de donneurs de TOUS les groupes ?",
+      "reponses": [
+        {
+          "texte": "Chaque patient a besoin d'un sang compatible avec le sien",
+          "correcte": true
+        },
+        {
+          "texte": "Pour que les stocks soient jolis",
+          "correcte": false
+        },
+        {
+          "texte": "Ce n'est pas vraiment utile",
+          "correcte": false
+        }
+      ],
+      "explication": "Un patient doit recevoir un sang compatible : chaque groupe compte, le tien aussi !"
+    },
+    {
+      "id": "groupes-8",
+      "themeId": "groupes",
+      "question": "Quels sont les 4 groupes du système ABO ?",
+      "reponses": [
+        {
+          "texte": "A, B, AB et O",
+          "correcte": true
+        },
+        {
+          "texte": "A, B, C et D",
+          "correcte": false
+        },
+        {
+          "texte": "O, P, Q et R",
+          "correcte": false
+        }
+      ],
+      "explication": "A, B, AB et O. Ajoute le facteur Rhésus (+ ou −) et tu obtiens les 8 groupes."
+    },
+    {
+      "id": "vf-1",
+      "themeId": "vrai-faux",
+      "question": "Donner son sang peut rendre malade.",
+      "reponses": [
+        {
+          "texte": "Vrai",
+          "correcte": false
+        },
+        {
+          "texte": "Faux",
+          "correcte": true
+        }
+      ],
+      "explication": "Faux ! Le matériel est stérile et à usage unique. Un petit coup de fatigue est possible : c'est pour ça qu'il y a la collation."
+    },
+    {
+      "id": "vf-2",
+      "themeId": "vrai-faux",
+      "question": "Il faut venir à jeun pour donner son sang.",
+      "reponses": [
+        {
+          "texte": "Vrai",
+          "correcte": false
+        },
+        {
+          "texte": "Faux",
+          "correcte": true
+        }
+      ],
+      "explication": "Faux ! On vient après avoir bien mangé et bien bu."
+    },
+    {
+      "id": "vf-3",
+      "themeId": "vrai-faux",
+      "question": "Un seul don peut aider plusieurs patients.",
+      "reponses": [
+        {
+          "texte": "Vrai",
+          "correcte": true
+        },
+        {
+          "texte": "Faux",
+          "correcte": false
+        }
+      ],
+      "explication": "Vrai ! Le sang est séparé en globules rouges, plasma et plaquettes, qui peuvent soigner des patients différents."
+    },
+    {
+      "id": "vf-4",
+      "themeId": "vrai-faux",
+      "question": "On sait fabriquer du sang artificiel pour remplacer les dons.",
+      "reponses": [
+        {
+          "texte": "Vrai",
+          "correcte": false
+        },
+        {
+          "texte": "Faux",
+          "correcte": true
+        }
+      ],
+      "explication": "Faux ! Aucun produit ne remplace le sang humain : c'est pour ça que chaque don compte."
+    },
+    {
+      "id": "vf-5",
+      "themeId": "vrai-faux",
+      "question": "Il faut connaître son groupe sanguin pour venir donner.",
+      "reponses": [
+        {
+          "texte": "Vrai",
+          "correcte": false
+        },
+        {
+          "texte": "Faux",
+          "correcte": true
+        }
+      ],
+      "explication": "Faux ! Ton groupe est déterminé grâce à ton don. Bonus : tu le découvres."
+    },
+    {
+      "id": "vf-6",
+      "themeId": "vrai-faux",
+      "question": "Le corps renouvelle le sang donné.",
+      "reponses": [
+        {
+          "texte": "Vrai",
+          "correcte": true
+        },
+        {
+          "texte": "Faux",
+          "correcte": false
+        }
+      ],
+      "explication": "Vrai ! Ton corps reconstitue naturellement ce que tu as donné. On laisse juste quelques semaines entre deux dons."
+    },
+    {
+      "id": "vf-7",
+      "themeId": "vrai-faux",
+      "question": "On peut donner son sang le lendemain d'un tatouage.",
+      "reponses": [
+        {
+          "texte": "Vrai",
+          "correcte": false
+        },
+        {
+          "texte": "Faux",
+          "correcte": true
+        }
+      ],
+      "explication": "Faux ! Après un tatouage ou un piercing, on attend quelques mois. Le questionnaire d'éligibilité de l'appli te le rappelle."
+    },
+    {
+      "id": "vf-8",
+      "themeId": "vrai-faux",
+      "question": "On peut donner son sang plusieurs fois dans l'année.",
+      "reponses": [
+        {
+          "texte": "Vrai",
+          "correcte": true
+        },
+        {
+          "texte": "Faux",
+          "correcte": false
+        }
+      ],
+      "explication": "Vrai ! Il faut simplement laisser quelques semaines entre deux dons pour que le corps récupère."
+    },
+    {
+      "id": "voyage-1",
+      "themeId": "voyage",
+      "question": "Quelle est la toute première étape du voyage d'une poche de sang ?",
+      "reponses": [
+        {
+          "texte": "La collecte, c'est-à-dire le don",
+          "correcte": true
+        },
+        {
+          "texte": "La transfusion",
+          "correcte": false
+        },
+        {
+          "texte": "La distribution",
+          "correcte": false
+        }
+      ],
+      "explication": "Tout commence par la collecte : ton don !"
+    },
+    {
+      "id": "voyage-2",
+      "themeId": "voyage",
+      "question": "Après la collecte, le sang est séparé en…",
+      "reponses": [
+        {
+          "texte": "Globules rouges, plasma et plaquettes",
+          "correcte": true
+        },
+        {
+          "texte": "Eau, sel et sucre",
+          "correcte": false
+        },
+        {
+          "texte": "Rien, il reste tel quel",
+          "correcte": false
+        }
+      ],
+      "explication": "Il est séparé en 3 composants, qui pourront servir à des patients différents."
+    },
+    {
+      "id": "voyage-3",
+      "themeId": "voyage",
+      "question": "À quoi sert l'étape de « qualification biologique » ?",
+      "reponses": [
+        {
+          "texte": "Analyser le sang pour vérifier qu'il est sûr",
+          "correcte": true
+        },
+        {
+          "texte": "Choisir la couleur de la poche",
+          "correcte": false
+        },
+        {
+          "texte": "Donner une note au donneur",
+          "correcte": false
+        }
+      ],
+      "explication": "Des analyses vérifient chaque don, pour la sécurité des patients."
+    },
+    {
+      "id": "voyage-4",
+      "themeId": "voyage",
+      "question": "Combien de temps se conservent les globules rouges ?",
+      "reponses": [
+        {
+          "texte": "Environ 6 semaines (42 jours)",
+          "correcte": true
+        },
+        {
+          "texte": "2 jours",
+          "correcte": false
+        },
+        {
+          "texte": "10 ans",
+          "correcte": false
+        }
+      ],
+      "explication": "42 jours au maximum : les réserves doivent être renouvelées en permanence."
+    },
+    {
+      "id": "voyage-5",
+      "themeId": "voyage",
+      "question": "Pourquoi les plaquettes demandent-elles des dons très réguliers ?",
+      "reponses": [
+        {
+          "texte": "Elles se conservent seulement environ 7 jours",
+          "correcte": true
+        },
+        {
+          "texte": "Elles se conservent plusieurs années",
+          "correcte": false
+        },
+        {
+          "texte": "On n'en a besoin qu'une fois par an",
+          "correcte": false
+        }
+      ],
+      "explication": "Environ 7 jours seulement : c'est pour ça qu'on a besoin de dons toute l'année."
+    },
+    {
+      "id": "voyage-6",
+      "themeId": "voyage",
+      "question": "Dans quel ordre se fait le voyage d'une poche ?",
+      "reponses": [
+        {
+          "texte": "Collecte → préparation → qualification → distribution → transfusion",
+          "correcte": true
+        },
+        {
+          "texte": "Transfusion → collecte → distribution → préparation → qualification",
+          "correcte": false
+        },
+        {
+          "texte": "Distribution → collecte → transfusion → qualification → préparation",
+          "correcte": false
+        }
+      ],
+      "explication": "C'est le parcours complet d'une poche, du donneur jusqu'au patient."
+    },
+    {
+      "id": "voyage-7",
+      "themeId": "voyage",
+      "question": "Où a lieu la transfusion ?",
+      "reponses": [
+        {
+          "texte": "À l'hôpital, auprès du patient",
+          "correcte": true
+        },
+        {
+          "texte": "À la pharmacie",
+          "correcte": false
+        },
+        {
+          "texte": "À la mairie",
+          "correcte": false
+        }
+      ],
+      "explication": "La transfusion se fait à l'hôpital, sous la surveillance de l'équipe soignante."
+    },
+    {
+      "id": "voyage-8",
+      "themeId": "voyage",
+      "question": "Qui peut avoir besoin d'une transfusion ?",
+      "reponses": [
+        {
+          "texte": "Des personnes opérées, accidentées ou malades",
+          "correcte": true
+        },
+        {
+          "texte": "Seulement les sportifs",
+          "correcte": false
+        },
+        {
+          "texte": "Seulement les personnes âgées",
+          "correcte": false
+        }
+      ],
+      "explication": "Chirurgie, accident, accouchement, maladie… les besoins sont très variés, à tout âge."
+    },
+    {
+      "id": "appli-1",
+      "themeId": "appli",
+      "question": "Quand tu valides un don dans Aïma, tu reçois…",
+      "reponses": [
+        {
+          "texte": "Une carte-souvenir",
+          "correcte": true
+        },
+        {
+          "texte": "Des points",
+          "correcte": false
+        },
+        {
+          "texte": "De l'argent",
+          "correcte": false
+        }
+      ],
+      "explication": "La carte-souvenir du mois de ton don ! Le don est un geste gratuit : il ne rapporte jamais de points."
+    },
+    {
+      "id": "appli-2",
+      "themeId": "appli",
+      "question": "Comment gagne-t-on des points dans Aïma ?",
+      "reponses": [
+        {
+          "texte": "Avec les quiz, le parrainage et les défis collectifs",
+          "correcte": true
+        },
+        {
+          "texte": "En donnant son sang",
+          "correcte": false
+        },
+        {
+          "texte": "En achetant des points",
+          "correcte": false
+        }
+      ],
+      "explication": "Les points récompensent la curiosité et l'entraide, jamais le don lui-même."
+    },
+    {
+      "id": "appli-3",
+      "themeId": "appli",
+      "question": "Comment valides-tu ton don dans l'appli ?",
+      "reponses": [
+        {
+          "texte": "En scannant un QR code",
+          "correcte": true
+        },
+        {
+          "texte": "En envoyant une photo",
+          "correcte": false
+        },
+        {
+          "texte": "En appelant le centre de don",
+          "correcte": false
+        }
+      ],
+      "explication": "Un simple scan, et ta carte-souvenir apparaît dans ta collection."
+    },
+    {
+      "id": "appli-4",
+      "themeId": "appli",
+      "question": "Combien de cartes « mois du don » peux-tu collectionner sur une année ?",
+      "reponses": [
+        {
+          "texte": "12",
+          "correcte": true
+        },
+        {
+          "texte": "4",
+          "correcte": false
+        },
+        {
+          "texte": "52",
+          "correcte": false
+        }
+      ],
+      "explication": "Une carte par mois, soit 12 sur l'année, à retrouver sur ta frise."
+    },
+    {
+      "id": "appli-5",
+      "themeId": "appli",
+      "question": "Pour créer ton compte, dois-tu donner ton nom ou ton groupe sanguin ?",
+      "reponses": [
+        {
+          "texte": "Non",
+          "correcte": true
+        },
+        {
+          "texte": "Oui",
+          "correcte": false
+        }
+      ],
+      "explication": "Non ! Un pseudo suffit pour jouer : ton compte reste anonyme."
+    },
+    {
+      "id": "appli-6",
+      "themeId": "appli",
+      "question": "Le défi du mois dans Aïma, c'est…",
+      "reponses": [
+        {
+          "texte": "Un objectif collectif auquel tout le monde contribue",
+          "correcte": true
+        },
+        {
+          "texte": "Une course contre les autres joueurs",
+          "correcte": false
+        },
+        {
+          "texte": "Un défi réservé aux bénévoles",
+          "correcte": false
+        }
+      ],
+      "explication": "Chaque don validé fait avancer le défi de toute la communauté."
+    },
+    {
+      "id": "appli-7",
+      "themeId": "appli",
+      "question": "Les cartes de ta collection sont-elles tirées au hasard ?",
+      "reponses": [
+        {
+          "texte": "Non, chacune correspond à une action précise",
+          "correcte": true
+        },
+        {
+          "texte": "Oui, comme dans un paquet surprise",
+          "correcte": false
+        }
+      ],
+      "explication": "Pas de hasard dans Aïma : ta carte dépend du mois de ton don ou de l'événement auquel tu participes."
+    },
+    {
+      "id": "appli-8",
+      "themeId": "appli",
+      "question": "Pour prendre rendez-vous pour un don, l'appli…",
+      "reponses": [
+        {
+          "texte": "Te redirige vers le site du centre de don",
+          "correcte": true
+        },
+        {
+          "texte": "Choisit une date à ta place",
+          "correcte": false
+        },
+        {
+          "texte": "Ne permet pas de le faire",
+          "correcte": false
+        }
+      ],
+      "explication": "Un bouton t'emmène directement sur le site du centre de don pour réserver ton créneau."
+    }
+  ]
+}
