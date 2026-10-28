@@ -1,25 +1,21 @@
 {
   "expo": {
-    "name": "aima-roue",
+    "name": "Roue Aïma",
     "slug": "aima-roue",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "landscape",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/android-icon-foreground.png",
-        "backgroundImage": "./assets/android-icon-background.png",
-        "monochromeImage": "./assets/android-icon-monochrome.png"
-      },
-      "predictiveBackGestureEnabled": false
-    },
+    "platforms": ["web"],
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/favicon.png",
+      "output": "single",
+      "name": "Roue Aïma",
+      "shortName": "Roue Aïma",
+      "lang": "fr",
+      "backgroundColor": "#F6F1E4",
+      "themeColor": "#F6F1E4"
+    },
+    "plugins": ["expo-font"]
   }
 }
